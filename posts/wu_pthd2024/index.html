@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>write-up: Passe ton Hack d&#39;abord: 1 programming challenge | c0w5lip&#39;s blog</title>
+
+      <link rel="stylesheet" href="/css/main.min.383a31787c1dd516da1c171df3d30103c565913946678e7fb03a88861075ab68.css" integrity="sha256-ODoxeHwd1RbaHBcd89MBA8VlkTlGZ45/sDqIhhB1q2g=" crossorigin="anonymous">
+
+
+      <script src="/js/main.23cd0c7d837263b9eaeb96ee2d9ccfa2969daa3fa00fa1c1fe8701a9b87251a1.js" integrity="sha256-I80MfYNyY7nq65buLZzPopadqj&#43;gD6HB/ocBqbhyUaE=" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+  <header>
+    <a href="https://c0w5lip.github.io/">c0w5lip&#39;s blog</p>
+
+  <nav>
+    <ul>
+    <li>
+      <a href="/about/">about</a>
+    </li>
+    <li>
+      <a aria-current="true" class="ancestor" href="/posts/">posts</a>
+    </li>
+    </ul>
+  </nav>
+
+
+  </header>
+  <main>
+    
+  <h1>write-up: Passe ton Hack d&#39;abord: 1 programming challenge</h1>
+
+  
+  
+  <time datetime="2024-02-18T00:00:00&#43;00:00">February 18, 2024</time>
+
+  <p>I&rsquo;ve tried to do some challenges during that CTF. Here&rsquo;s my solution for the first programming challenge:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pwn <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>r <span style="color:#f92672">=</span> remote(<span style="color:#e6db74">&#39;37.59.31.202&#39;</span>, <span style="color:#ae81ff">2000</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(r<span style="color:#f92672">.</span>recv(<span style="color:#ae81ff">1024</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>r<span style="color:#f92672">.</span>sendline(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;1&#39;</span>)
+</span></span><span style="display:flex;"><span>print(r<span style="color:#f92672">.</span>recv(<span style="color:#ae81ff">1024</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+</span></span><span style="display:flex;"><span>    i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> <span style="color:#ae81ff">102</span>:
+</span></span><span style="display:flex;"><span>        print(r<span style="color:#f92672">.</span>recv(<span style="color:#ae81ff">1024</span>))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    evaluated <span style="color:#f92672">=</span> eval(r<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode())
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;[*] evaluated: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(evaluated))
+</span></span><span style="display:flex;"><span>    r<span style="color:#f92672">.</span>sendline(str(evaluated)<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>r<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div>
+  
+
+
+  </main>
+  <footer>
+    <p>Copyright 2024. All rights reserved.</p>
+
+  </footer>
+</body>
+</html>

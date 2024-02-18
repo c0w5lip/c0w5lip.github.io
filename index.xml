@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Home on c0w5lip&#39;s blog</title>
+    <link>https://c0w5lip.github.io/</link>
+    <description>Recent content in Home on c0w5lip&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 18 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://c0w5lip.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>write-up: Passe ton Hack d&#39;abord: 1 programming challenge</title>
+      <link>https://c0w5lip.github.io/posts/wu_pthd2024/</link>
+      <pubDate>Sun, 18 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://c0w5lip.github.io/posts/wu_pthd2024/</guid>
+      <description>I&amp;rsquo;ve tried to do some challenges during that CTF. Here&amp;rsquo;s my solution for the first programming challenge:&#xA;from pwn import * r = remote(&amp;#39;37.59.31.202&amp;#39;, 2000) print(r.recv(1024)) r.sendline(b&amp;#39;1&amp;#39;) print(r.recv(1024)) i = 1 while True: i += 1 if i == 102: print(r.recv(1024)) break evaluated = eval(r.recvline().decode()) print(&amp;#34;[*] evaluated: {}&amp;#34;.format(evaluated)) r.sendline(str(evaluated).encode()) r.close() </description>
+    </item>
+  </channel>
+</rss>

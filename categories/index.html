@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
 <head>
-	<meta name="generator" content="Hugo 0.122.0">
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>c0w5lip&#39;s blog</title>
+<title>Categories | c0w5lip&#39;s blog</title>
 
       <link rel="stylesheet" href="/css/main.min.383a31787c1dd516da1c171df3d30103c565913946678e7fb03a88861075ab68.css" integrity="sha256-ODoxeHwd1RbaHBcd89MBA8VlkTlGZ45/sDqIhhB1q2g=" crossorigin="anonymous">
 
@@ -32,11 +31,8 @@
   </header>
   <main>
     
+  <h1>Categories</h1>
   
-  
-    <h2><a href="/posts/wu_pthd2024/">write-up: Passe ton Hack d&#39;abord: 1 programming challenge</a></h2>
-    I&rsquo;ve tried to do some challenges during that CTF. Here&rsquo;s my solution for the first programming challenge:
-from pwn import * r = remote(&#39;37.59.31.202&#39;, 2000) print(r.recv(1024)) r.sendline(b&#39;1&#39;) print(r.recv(1024)) i = 1 while True: i += 1 if i == 102: print(r.recv(1024)) break evaluated = eval(r.recvline().decode()) print(&#34;[*] evaluated: {}&#34;.format(evaluated)) r.sendline(str(evaluated).encode()) r.close() 
   
 
   </main>
