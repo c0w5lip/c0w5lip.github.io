@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
 <head>
-	<meta name="generator" content="Hugo 0.122.0">
+	<meta name="generator" content="Hugo 0.134.2">
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>c0w5lip&#39;s blog</title>
@@ -25,6 +25,9 @@
     <li>
       <a href="/posts/">posts</a>
     </li>
+    <li>
+      <a href="/archives/">archives</a>
+    </li>
     </ul>
   </nav>
 
@@ -34,9 +37,62 @@
     
   
   
-    <h2><a href="/posts/wu_pthd2024/">write-up: Passe ton Hack d&#39;abord: 1 programming challenge</a></h2>
-    I&rsquo;ve tried to do some challenges during that CTF. Here&rsquo;s my solution for the first programming challenge:
-from pwn import * r = remote(&#39;37.59.31.202&#39;, 2000) print(r.recv(1024)) r.sendline(b&#39;1&#39;) print(r.recv(1024)) i = 1 while True: i += 1 if i == 102: print(r.recv(1024)) break evaluated = eval(r.recvline().decode()) print(&#34;[*] evaluated: {}&#34;.format(evaluated)) r.sendline(str(evaluated).encode()) r.close() 
+    <h2><a href="/posts/wu_pthd2024/">write-up: Passe ton Hack d&#39;abord 2024: 1 programming challenge</a></h2>
+    <p>I&rsquo;ve tried to do some challenges during that CTF. Here&rsquo;s my solution for the first programming challenge:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pwn <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>r <span style="color:#f92672">=</span> remote(<span style="color:#e6db74">&#39;37.59.31.202&#39;</span>, <span style="color:#ae81ff">2000</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(r<span style="color:#f92672">.</span>recv(<span style="color:#ae81ff">1024</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>r<span style="color:#f92672">.</span>sendline(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;1&#39;</span>)
+</span></span><span style="display:flex;"><span>print(r<span style="color:#f92672">.</span>recv(<span style="color:#ae81ff">1024</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>:
+</span></span><span style="display:flex;"><span>    i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> i <span style="color:#f92672">==</span> <span style="color:#ae81ff">102</span>:
+</span></span><span style="display:flex;"><span>        print(r<span style="color:#f92672">.</span>recv(<span style="color:#ae81ff">1024</span>))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    evaluated <span style="color:#f92672">=</span> eval(r<span style="color:#f92672">.</span>recvline()<span style="color:#f92672">.</span>decode())
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;[*] evaluated: </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>format(evaluated))
+</span></span><span style="display:flex;"><span>    r<span style="color:#f92672">.</span>sendline(str(evaluated)<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>r<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div>
+  
+    <h2><a href="/archives/write-up-fcsc-2023/">Write Up - FCSC 2023</a></h2>
+    <h1 id="about-this">About this</h1>
+<p>I did some challenges from the <a href="https://france-cybersecurity-challenge.fr/">France Cybersecurity Challenge</a> of this year, so here just 2 write ups (cuz I may not be really good at explaining how to solve shit). I didn&rsquo;t solved any tricky chall due to my lack of implication in the CTF, but some of them were pretty fun though, so thanks to the organizers.</p>
+<p>I finished 618/1364 on global ranking, and 67/188 on junior ranking.</p>
+  
+    <h2><a href="/archives/ctf-after-dark-winter-2023-wu-jester/">Write Up - CTF After Dark Winter 2023: Jester</a></h2>
+    <h2 id="informations">Informations</h2>
+<p>CTF: <a href="https://ctftime.org/event/1876">CTF After Dark Winter 2023</a>
+Author: Jerry</p>
+<h2 id="challenge">Challenge</h2>
+<blockquote>
+<p>Let&rsquo;s start with some addition:
+What is 7381 + 8074 ?
+Oh yeah, I think I forgot to mention. As an extra bonus to make sure you are learning, these numbers change every second :)
+Tee hee! Good luck keeping up!</p>
+</blockquote>
+<p><em>(<a href="https://jester.acmcyber.com/">https://jester.acmcyber.com/</a>)</em></p>
+<p>We first encounter a page that ask us to compute an addition on random numbers in less than a second. We&rsquo;ll obviously code a script that scrap the page, compute the addition, and send back the result in the submit.</p>
+  
+    <h2><a href="/archives/irisctf2023_babynotrsa/">Write Up - IrisCTF 2023: babynotrsa | Why you should beware tweaking RSA</a></h2>
+    <p><strong><a href="">Video version (French)</a></strong></p>
+<p>Sincere acknowledgements to <a href="http://aassfxxx.infos.st/">aaSSfxxx</a> who helped me a bit with mathematical demonstrations and kindly read my write up before I posted it.</p>
+<p>This challenge is one of the ones I flagged during the <a href="https://ctftime.org/event/1774/">IrisCTF 2023</a>. Thanks to the organizers, I didn&rsquo;t tried lots challenges but that one was particulary fun as a beginner.</p>
+<h1 id="challenge">Challenge</h1>
+<p>Name: babynotrsa
+Author: sera
+Description:</p>
+<blockquote>
+<p>Everyone knows RSA, but everyone also knows that RSA is slow. Why not just use a faster operation than exponentiation?</p>
   
 
   </main>

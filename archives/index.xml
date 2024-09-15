@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>archives on c0w5lip&#39;s blog</title>
+    <link>https://c0w5lip.github.io/archives/</link>
+    <description>Recent content in archives on c0w5lip&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 29 Apr 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://c0w5lip.github.io/archives/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Write Up - FCSC 2023</title>
+      <link>https://c0w5lip.github.io/archives/write-up-fcsc-2023/</link>
+      <pubDate>Sat, 29 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>https://c0w5lip.github.io/archives/write-up-fcsc-2023/</guid>
+      <description>&lt;h1 id=&#34;about-this&#34;&gt;About this&lt;/h1&gt;&#xA;&lt;p&gt;I did some challenges from the &lt;a href=&#34;https://france-cybersecurity-challenge.fr/&#34;&gt;France Cybersecurity Challenge&lt;/a&gt; of this year, so here just 2 write ups (cuz I may not be really good at explaining how to solve shit). I didn&amp;rsquo;t solved any tricky chall due to my lack of implication in the CTF, but some of them were pretty fun though, so thanks to the organizers.&lt;/p&gt;&#xA;&lt;p&gt;I finished 618/1364 on global ranking, and 67/188 on junior ranking.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Write Up - CTF After Dark Winter 2023: Jester</title>
+      <link>https://c0w5lip.github.io/archives/ctf-after-dark-winter-2023-wu-jester/</link>
+      <pubDate>Thu, 09 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>https://c0w5lip.github.io/archives/ctf-after-dark-winter-2023-wu-jester/</guid>
+      <description>&lt;h2 id=&#34;informations&#34;&gt;Informations&lt;/h2&gt;&#xA;&lt;p&gt;CTF: &lt;a href=&#34;https://ctftime.org/event/1876&#34;&gt;CTF After Dark Winter 2023&lt;/a&gt;&#xA;Author: Jerry&lt;/p&gt;&#xA;&lt;h2 id=&#34;challenge&#34;&gt;Challenge&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s start with some addition:&#xA;What is 7381 + 8074 ?&#xA;Oh yeah, I think I forgot to mention. As an extra bonus to make sure you are learning, these numbers change every second :)&#xA;Tee hee! Good luck keeping up!&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;(&lt;a href=&#34;https://jester.acmcyber.com/&#34;&gt;https://jester.acmcyber.com/&lt;/a&gt;)&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;We first encounter a page that ask us to compute an addition on random numbers in less than a second. We&amp;rsquo;ll obviously code a script that scrap the page, compute the addition, and send back the result in the submit.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Write Up - IrisCTF 2023: babynotrsa | Why you should beware tweaking RSA</title>
+      <link>https://c0w5lip.github.io/archives/irisctf2023_babynotrsa/</link>
+      <pubDate>Wed, 11 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>https://c0w5lip.github.io/archives/irisctf2023_babynotrsa/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;&#34;&gt;Video version (French)&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Sincere acknowledgements to &lt;a href=&#34;http://aassfxxx.infos.st/&#34;&gt;aaSSfxxx&lt;/a&gt; who helped me a bit with mathematical demonstrations and kindly read my write up before I posted it.&lt;/p&gt;&#xA;&lt;p&gt;This challenge is one of the ones I flagged during the &lt;a href=&#34;https://ctftime.org/event/1774/&#34;&gt;IrisCTF 2023&lt;/a&gt;. Thanks to the organizers, I didn&amp;rsquo;t tried lots challenges but that one was particulary fun as a beginner.&lt;/p&gt;&#xA;&lt;h1 id=&#34;challenge&#34;&gt;Challenge&lt;/h1&gt;&#xA;&lt;p&gt;Name: babynotrsa&#xA;Author: sera&#xA;Description:&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Everyone knows RSA, but everyone also knows that RSA is slow. Why not just use a faster operation than exponentiation?&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
