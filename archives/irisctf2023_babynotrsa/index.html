@@ -1,49 +1,198 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr">
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>Write Up - IrisCTF 2023: babynotrsa | Why you should beware tweaking RSA | c0w5lip&#39;s blog</title>
+  
+    <title>Write Up - IrisCTF 2023: babynotrsa | Why you should beware tweaking RSA :: Terminal</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Video version (French)
+Sincere acknowledgements to aaSSfxxx who helped me a bit with mathematical demonstrations and kindly read my write up before I posted it.
+This challenge is one of the ones I flagged during the IrisCTF 2023. Thanks to the organizers, I didn&rsquo;t tried lots challenges but that one was particulary fun as a beginner.
+Challenge Name: babynotrsa Author: sera Description:
+Everyone knows RSA, but everyone also knows that RSA is slow. Why not just use a faster operation than exponentiation?
+" />
+<meta name="keywords" content="" />
 
-      <link rel="stylesheet" href="/css/main.min.383a31787c1dd516da1c171df3d30103c565913946678e7fb03a88861075ab68.css" integrity="sha256-ODoxeHwd1RbaHBcd89MBA8VlkTlGZ45/sDqIhhB1q2g=" crossorigin="anonymous">
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="/archives/irisctf2023_babynotrsa/" />
 
 
-      <script src="/js/main.23cd0c7d837263b9eaeb96ee2d9ccfa2969daa3fa00fa1c1fe8701a9b87251a1.js" integrity="sha256-I80MfYNyY7nq65buLZzPopadqj&#43;gD6HB/ocBqbhyUaE=" crossorigin="anonymous"></script>
+
+
+
+  
+  <link rel="stylesheet" href="/css/buttons.min.2bc533403a27dfe0e93105a92502b42ce4587e2e4a87d9f7d349e51e16e09478.css">
+
+  
+  <link rel="stylesheet" href="/css/code.min.00125962708925857e7b66dbc58391d55be1191a3d0ce2034de8c9cd2c481c36.css">
+
+  
+  <link rel="stylesheet" href="/css/fonts.min.4881f0c525f3ce2a1864fb6e96676396cebe1e6fcef1933e8e1dde7041004fb5.css">
+
+  
+  <link rel="stylesheet" href="/css/footer.min.2e3eb191baee58dd05a9f0104ac1fab0827bca7c64dafe0b2579f934c33a1d69.css">
+
+  
+  <link rel="stylesheet" href="/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="/css/header.min.b6fb4423cf82a9f9d7abc9cd010223fa3d70a6526a3f28f8e17d814c06e18f9e.css">
+
+  
+  <link rel="stylesheet" href="/css/main.min.fe8dc560fccb53a458b0db19ccb7b265764ac46b68596b7e099c6793054dd457.css">
+
+  
+  <link rel="stylesheet" href="/css/menu.min.83637a90d903026bc280d3f82f96ceb06c5fc72b7c1a8d686afb5bbf818a29f7.css">
+
+  
+  <link rel="stylesheet" href="/css/pagination.min.82f6400eae7c7c6dc3c866733c2ec0579e4089608fea69400ff85b3880aa0d3c.css">
+
+  
+  <link rel="stylesheet" href="/css/post.min.fc74ca360273c1d828da3c02b8174eba435607b369d98418ccc6f2243cd4e75d.css">
+
+  
+  <link rel="stylesheet" href="/css/prism.min.9023bbc24533d09e97a51a0a42a5a7bfe4c591ae167c5551fb1d2191d11977c0.css">
+
+  
+  <link rel="stylesheet" href="/css/syntax.min.cc789ed9377260d7949ea4c18781fc58959a89287210fe4edbff44ebfc1511b6.css">
+
+  
+  <link rel="stylesheet" href="/css/terminal.min.487366dae8bfc5fc9ddc585ad5e066a6503ac00653ed4ab23d4afac2991ae072.css">
+
+  
+  <link rel="stylesheet" href="/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+
+
+
+
+
+<link rel="shortcut icon" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+  
+    <meta name="twitter:site" content="" />
+  
+    <meta name="twitter:creator" content="" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Write Up - IrisCTF 2023: babynotrsa | Why you should beware tweaking RSA">
+<meta property="og:description" content="Video version (French)
+Sincere acknowledgements to aaSSfxxx who helped me a bit with mathematical demonstrations and kindly read my write up before I posted it.
+This challenge is one of the ones I flagged during the IrisCTF 2023. Thanks to the organizers, I didn&rsquo;t tried lots challenges but that one was particulary fun as a beginner.
+Challenge Name: babynotrsa Author: sera Description:
+Everyone knows RSA, but everyone also knows that RSA is slow. Why not just use a faster operation than exponentiation?
+" />
+<meta property="og:url" content="/archives/irisctf2023_babynotrsa/" />
+<meta property="og:site_name" content="Terminal" />
+
+  <meta property="og:image" content="/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2023-01-11 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
 
 
 </head>
 <body>
-  <header>
-    <a href="https://c0w5lip.github.io/">c0w5lip&#39;s blog</p>
-
-  <nav>
-    <ul>
-    <li>
-      <a href="/about/">about</a>
-    </li>
-    <li>
-      <a href="/posts/">posts</a>
-    </li>
-    <li>
-      <a aria-current="true" class="ancestor" href="/archives/">archives</a>
-    </li>
-    </ul>
-  </nav>
 
 
-  </header>
-  <main>
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Terminal
+  </div>
+</a>
+
+    </div>
     
-  <h1>Write Up - IrisCTF 2023: babynotrsa | Why you should beware tweaking RSA</h1>
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+        
+          <li><a href="/showcase">Showcase</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/about" >About</a></li>
+        
+      
+        
+          <li><a href="/showcase" >Showcase</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="/archives/irisctf2023_babynotrsa/">Write Up - IrisCTF 2023: babynotrsa | Why you should beware tweaking RSA</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2023-01-11</time></div>
 
   
   
-  <time datetime="2023-01-11T00:00:00&#43;00:00">January 11, 2023</time>
 
-  <p><strong><a href="">Video version (French)</a></strong></p>
+
+  
+
+  <div class="post-content"><div>
+        <p><strong><a href="/">Video version (French)</a></strong></p>
 <p>Sincere acknowledgements to <a href="http://aassfxxx.infos.st/">aaSSfxxx</a> who helped me a bit with mathematical demonstrations and kindly read my write up before I posted it.</p>
 <p>This challenge is one of the ones I flagged during the <a href="https://ctftime.org/event/1774/">IrisCTF 2023</a>. Thanks to the organizers, I didn&rsquo;t tried lots challenges but that one was particulary fun as a beginner.</p>
-<h1 id="challenge">Challenge</h1>
+<h1 id="challenge">Challenge<a href="#challenge" class="hanchor" ariaLabel="Anchor">#</a> </h1>
 <p>Name: babynotrsa
 Author: sera
 Description:</p>
@@ -81,7 +230,7 @@ Description:</p>
 <pre tabindex="0"><code>n: 21429933885346644587620272790089165813353259223649897308397918491861562279767580488441831451651834802520437234248670652477414296159324726172158330221397420877323921934377321483041598028053870169281419856238830264612049920637819183013812186448416408328958360799645342598727238977986741643705720539702955864527935398839069236768630867447760912744208154645904678859979378604386855741350220991958191408182147658532111413386776058224418484895056146180001830405844881486308594953615999140110712045286000170660686758188247928230655746746482354748673482506070246808187808961599576834080344066055446605664648340486804023919467
 e: 10788856448030235429585145974385410619185237539198378911887172763282204686697141640582780419040340318300048024100764883750608733331571719088729202796193207904701854848679412033514037149161609202467086017862616635522167577463675349103892366486246290794304652162107619408011548841664240624935414339021041162505899467159623692906986841033101688573177710503499081107294555688550493634416552587963816327790111808356639558596438537569271043190414208204773219496030644456745185896540608008662177117212000718802474957268532153146989410300300554162811564064457762004188326986236869603714437275058878379647196886872404148116134
 flag: 3954523654845598592730156937269688140867480061118457307435945875579028695730063528424973907208923014508950419982702682082417623843946231057553311028711409093751376287876799688357176816093484535703797332422565021382453879908968161161537921292725907853309522100738603080298951279637316809695591295752657105226749125868510570125512146397480808774515489938198191435285342823923715673372695893409325086032930406554421670815433958591841773705563688270739343539481283865883427560667086249616210745997056621098406247201301461721906304555526293017773805845093545204570993288514598261070097976786800172141678030841959348372097
-</code></pre><h2 id="first-approach">First approach</h2>
+</code></pre><h2 id="first-approach">First approach<a href="#first-approach" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>Let be {% mathjax %}m{% endmathjax %} the plaintext flag and {% mathjax %}c{% endmathjax %} the encrypted flag (from <code>output.txt</code>).</p>
 <p><strong>Reminder</strong>: RSA cryptosystem is based on <a href="https://en.wikipedia.org/wiki/Modular_exponentiation">modular exponentation</a>, and compute messages this way:
 {% mathjax %}c = m ^ e \pmod n{% endmathjax %}</p>
@@ -102,9 +251,9 @@ However, unlike RSA, this algorithm uses multiplication instead of exponentation
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># We generate our encryption key</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> secrets
 </span></span><span style="display:flex;"><span>e <span style="color:#f92672">=</span> secrets<span style="color:#f92672">.</span>randbelow(n)
-</span></span></code></pre></div><h2 id="so-whats-the-matter-"><em>So, what&rsquo;s the matter ?</em></h2>
+</span></span></code></pre></div><h2 id="so-whats-the-matter-"><em>So, what&rsquo;s the matter ?</em><a href="#so-whats-the-matter-" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>To decrypt {% mathjax %}c{% endmathjax %}, we have to retrieve {% mathjax %}d{% endmathjax %}. But as we&rsquo;ll see, due to the fact that the algorithm uses multiplication instead of exponentation, {% mathjax %}d{% endmathjax %} is actually easy to compute.</p>
-<h3 id="first-method">First method</h3>
+<h3 id="first-method">First method<a href="#first-method" class="hanchor" ariaLabel="Anchor">#</a> </h3>
 <p>Let&rsquo;s define two functions:
 {% mathjax %}encrypt(m) \rightarrow m \times e \pmod n{%endmathjax %}
 {% mathjax %}decrypt(c) \rightarrow c \times d \pmod n{%endmathjax %}</p>
@@ -116,7 +265,7 @@ However, unlike RSA, this algorithm uses multiplication instead of exponentation
 <p>Which is the same as:
 {% mathjax %}d \equiv e^-1 \pmod n{% endmathjax %}</p>
 <p>We got {% mathjax %}d{%endmathjax %}.</p>
-<h3 id="second-method-bézouts-identity-and-extended-euclidean-algorithm">Second method (Bézout’s identity and extended Euclidean algorithm)</h3>
+<h3 id="second-method-bézouts-identity-and-extended-euclidean-algorithm">Second method (Bézout’s identity and extended Euclidean algorithm)<a href="#second-method-bézouts-identity-and-extended-euclidean-algorithm" class="hanchor" ariaLabel="Anchor">#</a> </h3>
 <p>Admiting {% mathjax %}e{% endmathjax %} and {% mathjax %}n{% endmathjax %} are coprimes, we have: {% mathjax %}gcd(e,n) = 1{% endmathjax %}.
 Yet, we know from the <a href="https://en.wikipedia.org/wiki/B%C3%A9zout%27s_identity">Bézout&rsquo;s identity</a> that the following diophantine equation admits a solution couple {% mathjax %}(u,v) \in \mathbb Z{% endmathjax %}:
 {% mathjax %}e \times u + n \times v = gcd(e,n) \iff e \times u + n \times v = 1{% endmathjax %}</p>
@@ -125,7 +274,7 @@ Yet, we know from the <a href="https://en.wikipedia.org/wiki/B%C3%A9zout%27s_ide
 <p>This is exactly what we were searching for. Replacing {% mathjax %}u{% endmathjax %} by {% mathjax %}d{% endmathjax %}, we get our solution:
 {% mathjax %}d \equiv e^-1 \pmod n{% endmathjax %}</p>
 <p><code>*</code><em>check out the end of the write up for an <a href="https://raig0maru.github.io/2023/01/11/irisctf2023_babynotrsa/#Bonus-small-example-on-the-extended-Euclidean-algorithm">example</a></em></p>
-<h2 id="solution">Solution</h2>
+<h2 id="solution">Solution<a href="#solution" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>We compute {% mathjax %}d{% endmathjax %} this way:
 {% mathjax %}d \equiv e^-1 \pmod n{% endmathjax %}</p>
 <p>Once we&rsquo;ve got {% mathjax %}d{% endmathjax %}, we decrypt our ciphertext (and thus, retrieve {% mathjax %}m{% endmathjax %}):
@@ -141,7 +290,7 @@ Yet, we know from the <a href="https://en.wikipedia.org/wiki/B%C3%A9zout%27s_ide
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>print(long_to_bytes(decrypted_flag)<span style="color:#f92672">.</span>decode())
 </span></span></code></pre></div><pre tabindex="0"><code>irisctf{discrete_divide_isn&#39;t_hard}
-</code></pre><h2 id="bonus--small-example-on-the-extended-euclidean-algorithm">Bonus : small example on the extended Euclidean algorithm</h2>
+</code></pre><h2 id="bonus--small-example-on-the-extended-euclidean-algorithm">Bonus : small example on the extended Euclidean algorithm<a href="#bonus--small-example-on-the-extended-euclidean-algorithm" class="hanchor" ariaLabel="Anchor">#</a> </h2>
 <p>The extended Euclidean algorithm allows us to not only to find the gcd of two number, but also to find Bézout coefficients {% mathjax %}(u,v) \in \mathbb Z{% endmathjax %} for diophantines equations such as this one :
 {% mathjax %}e \times u + n \times v = gcd(e,n){% endmathjax %}</p>
 <p>The book <a href="https://en.wikipedia.org/wiki/Introduction_to_Algorithms"><em>Introduction to Algorithms</em></a> (written in part by one of the inventors of RSA; for the fun fact) gives a pseudocode recursive version of the algorithm.
@@ -167,13 +316,43 @@ And we notice that: {% mathjax %}e \times u + n \times v = gcd(e,n){% endmathjax
 <p>I hope you learnt something (that modifiying just a tiny part of a cryptosystem can be crucial, for example) reading this wu/article. Give me feedback on Discord (██████████████) or my other social medias if you liked it; I would really appreciate it.</p>
 <p>Thanks again to <a href="http://aassfxxx.infos.st/">aaSSfxxx</a> and the <a href="https://irissec.xyz/">IrisSec</a> team :)</p>
 
+      </div></div>
+
   
 
+  
+    
 
-  </main>
-  <footer>
-    <p>Copyright 2024. All rights reserved.</p>
+  
+</article>
 
-  </footer>
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2024 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
 </body>
 </html>

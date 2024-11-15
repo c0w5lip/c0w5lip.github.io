@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>about on c0w5lip&#39;s blog</title>
-    <link>https://c0w5lip.github.io/about/</link>
-    <description>Recent content in about on c0w5lip&#39;s blog</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate></lastBuildDate>
-    <atom:link href="https://c0w5lip.github.io/about/index.xml" rel="self" type="application/rss+xml" />
+    <title>about on Terminal</title>
+    <link>/about/</link>
+    <description>Recent content in about on Terminal</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 01 Jan 2023 08:30:00 -0700</lastBuildDate><atom:link href="/about/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
