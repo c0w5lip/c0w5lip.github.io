@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+
+<script src="/livereload.js?mindelay=10&amp;v=2&amp;port=6841&amp;path=livereload" data-no-instant defer></script><script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>c0w5lip@wired:~$</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+
+
+      <script src="/js/main.js"></script>
+
+
+</head>
+<body>
+  <header>
+    <h1>c0w5lip@wired:~$</h1>
+
+  <nav>
+    <ul>
+  <span class="menu-bracket">[</span> 
+  <ul style="list-style: none; padding: 0; margin: 0; display: inline-flex; align-items: center;">
+      <li class="menu-item"> 
+        <a href="/">home</a>
+      </li>
+      <li class="menu-item"> 
+        <a aria-current="true" class="ancestor" href="/posts/">posts</a>
+      </li>
+      <li class="menu-item"> 
+        <a href="/tags/">tags</a>
+      </li>
+      <li class="menu-item"> 
+        <a href="/about/">about</a>
+      </li>
+  </ul>
+  <span class="menu-bracket">]</span> 
+    </ul>
+  </nav>
+
+
+  </header>
+  <main>
+    
+      <div class="tags">
+      🏷️
+      
+        <a href="/tags/write-up" class="tag">write-up</a>
+      
+      </div>
+    
+    
+    
+  <h1>write up - fcsc 2023</h1>
+  <h1 id="about-this">About this</h1>
+<p>I did some challenges from the <a href="https://france-cybersecurity-challenge.fr/">France Cybersecurity Challenge</a> of this year, so here just 2 write ups (cuz I may not be really good at explaining how to solve shit). I didn&rsquo;t solved any tricky chall due to my lack of implication in the CTF, but some of them were pretty fun though, so thanks to the organizers.</p>
+<p>I finished 618/1364 on global ranking, and 67/188 on junior ranking.</p>
+<h2 id="la-gazette-de-windows">La gazette de Windows</h2>
+<p>Category: Reverse (intro)
+Description:</p>
+<pre tabindex="0"><code>Il semblerait qu&#39;un utilisateur exécute des scripts Powershell suspects sur sa machine. Heureusement cette machine est journalisée et nous avons pu récupérer le journal d&#39;évènements Powershell. Retrouvez ce qui a été envoyé à l&#39;attaquant.
+
+SHA256(Microsoft-Windows-PowerShell%4Operational.evtx) = 770b92f7c98ffb708c3e364753ee4bb569ccc810dd5891cbaf1363c2063ddd78.
+</code></pre><p>As we open the file <code>Microsoft-Windows-PowerShell4Operational.evtx</code> in Event Viewer (<code>.evtx</code> being the extension for Windows Event Viewer log-files), we encounter a few events :</p>
+<p><img src="../events.png" alt=""></p>
+<p>One of them contains the following piece of PowerShell code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>$l <span style="color:#eceff4">=</span> 0x46<span style="color:#eceff4">,</span> 0x42<span style="color:#eceff4">,</span> 0x51<span style="color:#eceff4">,</span> 0x40<span style="color:#eceff4">,</span> 0x7F<span style="color:#eceff4">,</span> 0x3C<span style="color:#eceff4">,</span> 0x3E<span style="color:#eceff4">,</span> 0x64<span style="color:#eceff4">,</span> 0x31<span style="color:#eceff4">,</span> 0x31<span style="color:#eceff4">,</span> 0x6E<span style="color:#eceff4">,</span> 0x32<span style="color:#eceff4">,</span> 0x34<span style="color:#eceff4">,</span> 0x68<span style="color:#eceff4">,</span> 0x3B<span style="color:#eceff4">,</span> 0x6E<span style="color:#eceff4">,</span> 0x25<span style="color:#eceff4">,</span> 0x25<span style="color:#eceff4">,</span> 0x24<span style="color:#eceff4">,</span> 0x77<span style="color:#eceff4">,</span> 0x77<span style="color:#eceff4">,</span> 0x73<span style="color:#eceff4">,</span> 0x20<span style="color:#eceff4">,</span> 0x75<span style="color:#eceff4">,</span> 0x29<span style="color:#eceff4">,</span> 0x7C<span style="color:#eceff4">,</span> 0x7B<span style="color:#eceff4">,</span> 0x2D<span style="color:#eceff4">,</span> 0x79<span style="color:#eceff4">,</span> 0x29<span style="color:#eceff4">,</span> 0x29<span style="color:#eceff4">,</span> 0x29<span style="color:#eceff4">,</span> 0x10<span style="color:#eceff4">,</span> 0x13<span style="color:#eceff4">,</span> 0x1B<span style="color:#eceff4">,</span> 0x14<span style="color:#eceff4">,</span> 0x16<span style="color:#eceff4">,</span> 0x40<span style="color:#eceff4">,</span> 0x47<span style="color:#eceff4">,</span> 0x16<span style="color:#eceff4">,</span> 0x4B<span style="color:#eceff4">,</span> 0x4C<span style="color:#eceff4">,</span> 0x13<span style="color:#eceff4">,</span> 0x4A<span style="color:#eceff4">,</span> 0x48<span style="color:#eceff4">,</span> 0x1A<span style="color:#eceff4">,</span> 0x1C<span style="color:#eceff4">,</span> 0x19<span style="color:#eceff4">,</span> 0x2<span style="color:#eceff4">,</span> 0x5<span style="color:#eceff4">,</span> 0x4<span style="color:#eceff4">,</span> 0x7<span style="color:#eceff4">,</span> 0x2<span style="color:#eceff4">,</span> 0x5<span style="color:#eceff4">,</span> 0x2<span style="color:#eceff4">,</span> 0x0<span style="color:#eceff4">,</span> 0xD<span style="color:#eceff4">,</span> 0xA<span style="color:#eceff4">,</span> 0x59<span style="color:#eceff4">,</span> 0xF<span style="color:#eceff4">,</span> 0x5A<span style="color:#eceff4">,</span> 0xA<span style="color:#eceff4">,</span> 0x7<span style="color:#eceff4">,</span> 0x5D<span style="color:#eceff4">,</span> 0x73<span style="color:#eceff4">,</span> 0x20<span style="color:#eceff4">,</span> 0x20<span style="color:#eceff4">,</span> 0x27<span style="color:#eceff4">,</span> 0x77<span style="color:#eceff4">,</span> 0x38<span style="color:#eceff4">,</span> 0x4B<span style="color:#eceff4">,</span> 0x4D
+</span></span><span style="display:flex;"><span>$s <span style="color:#eceff4">=</span> <span style="color:#a3be8c">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1;font-weight:bold">for</span> <span style="color:#eceff4">(</span>$i <span style="color:#eceff4">=</span> <span style="color:#b48ead">0</span><span style="color:#eceff4">;</span> $i <span style="color:#81a1c1">-lt</span> <span style="color:#b48ead">72</span><span style="color:#eceff4">;</span> $i<span style="color:#eceff4">++)</span> <span style="color:#eceff4">{</span>
+</span></span><span style="display:flex;"><span>    $s <span style="color:#eceff4">+=</span> <span style="color:#eceff4">[</span><span style="color:#8fbcbb">char</span><span style="color:#eceff4">]([</span><span style="color:#8fbcbb">int</span><span style="color:#eceff4">]</span>$l<span style="color:#eceff4">[</span>$i<span style="color:#eceff4">]</span> <span style="color:#81a1c1">-bxor</span> $i<span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#eceff4">}</span>
+</span></span><span style="display:flex;"><span>WriteToStream $s
+</span></span></code></pre></div><p>It looks like a loop on some char array, so all we have to do is to execute it. We create a new <code>.ps1 file</code> and paste the.</p>
+<p>But there&rsquo;s an error:</p>
+<pre tabindex="0"><code>PS H:\root\ctf\FCSC&gt; .\script.ps1
+WriteToStream : The term &#39;WriteToStream&#39; is not recognized as the name of a cmdlet, function, 
+script file, or operable program. Check the spelling of the name, or if a path was included,       
+verify that the path is correct and try again.
+At H:\root\ctf\FCSC\script.ps1:6 char:1
++ WriteToStream $s
++ ~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (WriteToStream:String) [], CommandNotFoundException  
+    + FullyQualifiedErrorId : CommandNotFoundException
+</code></pre><p>It seems that the function used to output the result doesn&rsquo;t work. After searching how to output a variable in PowerShell on Google, we find on MSDN that we have to use <code>Write-Output $s</code> instead of <code>WriteToStream</code>.</p>
+<p>And here we go:
+<code>FCSC{98c98d98e5a546dcf6b1ea6e47602972ea1ce9ad7262464604753c4f79b3abd3}</code></p>
+<h2 id="tri-sélectif">Tri sélectif</h2>
+<p>Category: Reverse (intro)
+Description:</p>
+<pre tabindex="0"><code>Vous devez trier un tableau dont vous ne voyez pas les valeurs !
+
+nc challenges.france-cybersecurity-challenge.fr 2051
+</code></pre><p>So we&rsquo;re given two files:</p>
+<p><code>client.py</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#616e87;font-style:italic">#!/usr/bin/env python3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#616e87;font-style:italic"># python3 -m pip install pwntools</span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1;font-weight:bold">from</span> <span style="color:#8fbcbb">pwn</span> <span style="color:#81a1c1;font-weight:bold">import</span> <span style="color:#81a1c1">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#616e87;font-style:italic"># Paramètres de connexion</span>
+</span></span><span style="display:flex;"><span>HOST<span style="color:#eceff4">,</span> PORT <span style="color:#81a1c1">=</span> <span style="color:#a3be8c">&#34;challenges.france-cybersecurity-challenge.fr&#34;</span><span style="color:#eceff4">,</span> <span style="color:#b48ead">2051</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1;font-weight:bold">def</span> <span style="color:#88c0d0">comparer</span><span style="color:#eceff4">(</span>x<span style="color:#eceff4">,</span> y<span style="color:#eceff4">):</span>
+</span></span><span style="display:flex;"><span>	io<span style="color:#81a1c1">.</span>sendlineafter<span style="color:#eceff4">(</span><span style="color:#a3be8c">b</span><span style="color:#a3be8c">&#34;&gt;&gt;&gt; &#34;</span><span style="color:#eceff4">,</span> <span style="color:#a3be8c">f</span><span style="color:#a3be8c">&#34;comparer </span><span style="color:#a3be8c">{</span>x<span style="color:#a3be8c">}</span><span style="color:#a3be8c"> </span><span style="color:#a3be8c">{</span>y<span style="color:#a3be8c">}</span><span style="color:#a3be8c">&#34;</span><span style="color:#81a1c1">.</span>encode<span style="color:#eceff4">())</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#81a1c1;font-weight:bold">return</span> <span style="color:#81a1c1">int</span><span style="color:#eceff4">(</span>io<span style="color:#81a1c1">.</span>recvline<span style="color:#eceff4">()</span><span style="color:#81a1c1">.</span>strip<span style="color:#eceff4">()</span><span style="color:#81a1c1">.</span>decode<span style="color:#eceff4">())</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1;font-weight:bold">def</span> <span style="color:#88c0d0">echanger</span><span style="color:#eceff4">(</span>x<span style="color:#eceff4">,</span> y<span style="color:#eceff4">):</span>
+</span></span><span style="display:flex;"><span>	io<span style="color:#81a1c1">.</span>sendlineafter<span style="color:#eceff4">(</span><span style="color:#a3be8c">b</span><span style="color:#a3be8c">&#34;&gt;&gt;&gt; &#34;</span><span style="color:#eceff4">,</span> <span style="color:#a3be8c">f</span><span style="color:#a3be8c">&#34;echanger </span><span style="color:#a3be8c">{</span>x<span style="color:#a3be8c">}</span><span style="color:#a3be8c"> </span><span style="color:#a3be8c">{</span>y<span style="color:#a3be8c">}</span><span style="color:#a3be8c">&#34;</span><span style="color:#81a1c1">.</span>encode<span style="color:#eceff4">())</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1;font-weight:bold">def</span> <span style="color:#88c0d0">longueur</span><span style="color:#eceff4">():</span>
+</span></span><span style="display:flex;"><span>	io<span style="color:#81a1c1">.</span>sendlineafter<span style="color:#eceff4">(</span><span style="color:#a3be8c">b</span><span style="color:#a3be8c">&#34;&gt;&gt;&gt; &#34;</span><span style="color:#eceff4">,</span> <span style="color:#a3be8c">b</span><span style="color:#a3be8c">&#34;longueur&#34;</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#81a1c1;font-weight:bold">return</span> <span style="color:#81a1c1">int</span><span style="color:#eceff4">(</span>io<span style="color:#81a1c1">.</span>recvline<span style="color:#eceff4">()</span><span style="color:#81a1c1">.</span>strip<span style="color:#eceff4">()</span><span style="color:#81a1c1">.</span>decode<span style="color:#eceff4">())</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1;font-weight:bold">def</span> <span style="color:#88c0d0">verifier</span><span style="color:#eceff4">():</span>
+</span></span><span style="display:flex;"><span>	io<span style="color:#81a1c1">.</span>sendlineafter<span style="color:#eceff4">(</span><span style="color:#a3be8c">b</span><span style="color:#a3be8c">&#34;&gt;&gt;&gt; &#34;</span><span style="color:#eceff4">,</span> <span style="color:#a3be8c">b</span><span style="color:#a3be8c">&#34;verifier&#34;</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>	r <span style="color:#81a1c1">=</span> io<span style="color:#81a1c1">.</span>recvline<span style="color:#eceff4">()</span><span style="color:#81a1c1">.</span>strip<span style="color:#eceff4">()</span><span style="color:#81a1c1">.</span>decode<span style="color:#eceff4">()</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#81a1c1;font-weight:bold">if</span> <span style="color:#a3be8c">&#34;flag&#34;</span> <span style="color:#81a1c1;font-weight:bold">in</span> r<span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span>r<span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#81a1c1;font-weight:bold">else</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span>io<span style="color:#81a1c1">.</span>recvline<span style="color:#eceff4">()</span><span style="color:#81a1c1">.</span>strip<span style="color:#eceff4">()</span><span style="color:#81a1c1">.</span>decode<span style="color:#eceff4">())</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span>io<span style="color:#81a1c1">.</span>recvline<span style="color:#eceff4">()</span><span style="color:#81a1c1">.</span>strip<span style="color:#eceff4">()</span><span style="color:#81a1c1">.</span>decode<span style="color:#eceff4">())</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1;font-weight:bold">def</span> <span style="color:#88c0d0">trier</span><span style="color:#eceff4">(</span>N<span style="color:#eceff4">):</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#616e87;font-style:italic">#############################</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#616e87;font-style:italic">#   ... Complétez ici ...   #</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#616e87;font-style:italic"># Ajoutez votre code Python #</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#616e87;font-style:italic">############################</span>
+</span></span><span style="display:flex;"><span>	
+</span></span><span style="display:flex;"><span>	<span style="color:#81a1c1;font-weight:bold">for</span> i <span style="color:#81a1c1;font-weight:bold">in</span> <span style="color:#81a1c1">range</span><span style="color:#eceff4">(</span>N<span style="color:#eceff4">,</span> <span style="color:#b48ead">1</span><span style="color:#eceff4">,</span> <span style="color:#81a1c1">-</span><span style="color:#b48ead">1</span><span style="color:#eceff4">):</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#81a1c1;font-weight:bold">for</span> j <span style="color:#81a1c1;font-weight:bold">in</span> <span style="color:#81a1c1">range</span><span style="color:#eceff4">(</span>i<span style="color:#81a1c1">-</span><span style="color:#b48ead">1</span><span style="color:#eceff4">):</span>
+</span></span><span style="display:flex;"><span>			x <span style="color:#81a1c1">=</span> <span style="color:#81a1c1">int</span><span style="color:#eceff4">(</span>j<span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>			y <span style="color:#81a1c1">=</span> <span style="color:#81a1c1">int</span><span style="color:#eceff4">(</span>j<span style="color:#eceff4">)</span> <span style="color:#81a1c1">+</span> <span style="color:#b48ead">1</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span><span style="color:#a3be8c">f</span><span style="color:#a3be8c">&#34;x=</span><span style="color:#a3be8c">{</span>x<span style="color:#a3be8c">}</span><span style="color:#a3be8c">, y=</span><span style="color:#a3be8c">{</span>y<span style="color:#a3be8c">}</span><span style="color:#a3be8c">&#34;</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#81a1c1;font-weight:bold">if</span> comparer<span style="color:#eceff4">(</span>y<span style="color:#eceff4">,</span> x<span style="color:#eceff4">):</span>
+</span></span><span style="display:flex;"><span>				echanger<span style="color:#eceff4">(</span>x<span style="color:#eceff4">,</span>y<span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#a3be8c">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#a3be8c">	for z in range(10):
+</span></span></span><span style="display:flex;"><span><span style="color:#a3be8c">		for i in range(N-1):
+</span></span></span><span style="display:flex;"><span><span style="color:#a3be8c">			x = int(i)
+</span></span></span><span style="display:flex;"><span><span style="color:#a3be8c">			y = int(i) + 1
+</span></span></span><span style="display:flex;"><span><span style="color:#a3be8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#a3be8c">			print(f&#34;x=</span><span style="color:#a3be8c">{x}</span><span style="color:#a3be8c">, y=</span><span style="color:#a3be8c">{y}</span><span style="color:#a3be8c">&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#a3be8c">			if comparer(y, x):
+</span></span></span><span style="display:flex;"><span><span style="color:#a3be8c">				echanger(x, y)&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#616e87;font-style:italic"># Ouvre la connexion au serveur</span>
+</span></span><span style="display:flex;"><span>io <span style="color:#81a1c1">=</span> remote<span style="color:#eceff4">(</span>HOST<span style="color:#eceff4">,</span> PORT<span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#616e87;font-style:italic"># Récupère la longueur du tableau</span>
+</span></span><span style="display:flex;"><span>N <span style="color:#81a1c1">=</span> longueur<span style="color:#eceff4">()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#616e87;font-style:italic"># Appel de la fonction de tri que vous devez écrire</span>
+</span></span><span style="display:flex;"><span>trier<span style="color:#eceff4">(</span>N<span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#616e87;font-style:italic"># Verification</span>
+</span></span><span style="display:flex;"><span>verifier<span style="color:#eceff4">()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#616e87;font-style:italic"># Fermeture de la connexion</span>
+</span></span><span style="display:flex;"><span>io<span style="color:#81a1c1">.</span>close<span style="color:#eceff4">()</span>
+</span></span></code></pre></div><p><code>tri-selectif.py</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#81a1c1;font-weight:bold">import</span> <span style="color:#8fbcbb">os</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1;font-weight:bold">def</span> <span style="color:#88c0d0">usage</span><span style="color:#eceff4">():</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span><span style="color:#a3be8c">&#39;Actions possibles:&#39;</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span><span style="color:#a3be8c">&#39;  - &#34;comparer X Y&#34;: compare les valeurs du tableau aux cases X et Y, et retourne 1 si la valeur en X est inférieure ou égale à celle en Y, 0 sinon.&#39;</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span><span style="color:#a3be8c">&#39;  - &#34;echanger X Y&#34;: échange les valeurs du tableau aux cases X et Y, et affiche le taleau modifié.&#39;</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span><span style="color:#a3be8c">&#39;  - &#34;longueur:      retourne la longueur du tableau.&#39;</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span><span style="color:#a3be8c">&#39;  - &#34;verifier:      retourne le flag si le tableau est trié.&#39;</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1;font-weight:bold">def</span> <span style="color:#88c0d0">printArray</span><span style="color:#eceff4">(</span>A<span style="color:#eceff4">):</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span><span style="color:#a3be8c">&#34; &#34;</span><span style="color:#81a1c1">.</span>join<span style="color:#eceff4">(</span><span style="color:#a3be8c">&#34;*&#34;</span> <span style="color:#81a1c1;font-weight:bold">for</span> a <span style="color:#81a1c1;font-weight:bold">in</span> A<span style="color:#eceff4">))</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1;font-weight:bold">def</span> <span style="color:#88c0d0">verifier</span><span style="color:#eceff4">(</span>A<span style="color:#eceff4">):</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#81a1c1;font-weight:bold">return</span> <span style="color:#81a1c1">all</span><span style="color:#eceff4">([</span> A<span style="color:#eceff4">[</span>i<span style="color:#eceff4">]</span> <span style="color:#81a1c1">&lt;=</span> A<span style="color:#eceff4">[</span>i <span style="color:#81a1c1">+</span> <span style="color:#b48ead">1</span><span style="color:#eceff4">]</span> <span style="color:#81a1c1;font-weight:bold">for</span> i <span style="color:#81a1c1;font-weight:bold">in</span> <span style="color:#81a1c1">range</span><span style="color:#eceff4">(</span><span style="color:#81a1c1">len</span><span style="color:#eceff4">(</span>A<span style="color:#eceff4">)</span> <span style="color:#81a1c1">-</span> <span style="color:#b48ead">1</span><span style="color:#eceff4">)</span> <span style="color:#eceff4">])</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1;font-weight:bold">if</span> __name__ <span style="color:#81a1c1">==</span> <span style="color:#a3be8c">&#34;__main__&#34;</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	A <span style="color:#81a1c1">=</span> <span style="color:#81a1c1">list</span><span style="color:#eceff4">(</span>os<span style="color:#81a1c1">.</span>urandom<span style="color:#eceff4">(</span><span style="color:#b48ead">32</span><span style="color:#eceff4">))</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span><span style="color:#a3be8c">&#34;Votre but est de trier un tableau dont vous ne voyez pas les valeurs (chacune est remplacée par *) :&#34;</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>	printArray<span style="color:#eceff4">(</span>A<span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>	usage<span style="color:#eceff4">()</span>
+</span></span><span style="display:flex;"><span>	B <span style="color:#81a1c1">=</span> A<span style="color:#eceff4">[:]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#81a1c1;font-weight:bold">try</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#81a1c1;font-weight:bold">while</span> <span style="color:#81a1c1;font-weight:bold">True</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>			x <span style="color:#81a1c1">=</span> <span style="color:#81a1c1">input</span><span style="color:#eceff4">(</span><span style="color:#a3be8c">&#34;&gt;&gt;&gt; &#34;</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>			<span style="color:#81a1c1;font-weight:bold">if</span> x<span style="color:#81a1c1">.</span>startswith<span style="color:#eceff4">(</span><span style="color:#a3be8c">&#34;comparer&#34;</span><span style="color:#eceff4">):</span>
+</span></span><span style="display:flex;"><span>				x<span style="color:#eceff4">,</span> y <span style="color:#81a1c1">=</span> <span style="color:#81a1c1">list</span><span style="color:#eceff4">(</span><span style="color:#81a1c1">map</span><span style="color:#eceff4">(</span><span style="color:#81a1c1">int</span><span style="color:#eceff4">,</span> x<span style="color:#81a1c1">.</span>split<span style="color:#eceff4">(</span><span style="color:#a3be8c">&#34; &#34;</span><span style="color:#eceff4">)[</span><span style="color:#b48ead">1</span><span style="color:#eceff4">:]))</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span><span style="color:#81a1c1">int</span><span style="color:#eceff4">(</span>A<span style="color:#eceff4">[</span>x<span style="color:#eceff4">]</span> <span style="color:#81a1c1">&lt;=</span> A<span style="color:#eceff4">[</span>y<span style="color:#eceff4">]))</span>
+</span></span><span style="display:flex;"><span>			
+</span></span><span style="display:flex;"><span>			<span style="color:#81a1c1;font-weight:bold">elif</span> x<span style="color:#81a1c1">.</span>startswith<span style="color:#eceff4">(</span><span style="color:#a3be8c">&#34;echanger&#34;</span><span style="color:#eceff4">):</span>
+</span></span><span style="display:flex;"><span>				x<span style="color:#eceff4">,</span> y <span style="color:#81a1c1">=</span> <span style="color:#81a1c1">list</span><span style="color:#eceff4">(</span><span style="color:#81a1c1">map</span><span style="color:#eceff4">(</span><span style="color:#81a1c1">int</span><span style="color:#eceff4">,</span> x<span style="color:#81a1c1">.</span>split<span style="color:#eceff4">(</span><span style="color:#a3be8c">&#34; &#34;</span><span style="color:#eceff4">)[</span><span style="color:#b48ead">1</span><span style="color:#eceff4">:]))</span>
+</span></span><span style="display:flex;"><span>				A<span style="color:#eceff4">[</span>x<span style="color:#eceff4">],</span> A<span style="color:#eceff4">[</span>y<span style="color:#eceff4">]</span> <span style="color:#81a1c1">=</span> A<span style="color:#eceff4">[</span>y<span style="color:#eceff4">],</span> A<span style="color:#eceff4">[</span>x<span style="color:#eceff4">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>			<span style="color:#81a1c1;font-weight:bold">elif</span> x<span style="color:#81a1c1">.</span>startswith<span style="color:#eceff4">(</span><span style="color:#a3be8c">&#34;longueur&#34;</span><span style="color:#eceff4">):</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span><span style="color:#81a1c1">len</span><span style="color:#eceff4">(</span>A<span style="color:#eceff4">))</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>			<span style="color:#81a1c1;font-weight:bold">elif</span> x<span style="color:#81a1c1">.</span>startswith<span style="color:#eceff4">(</span><span style="color:#a3be8c">&#34;verifier&#34;</span><span style="color:#eceff4">):</span>
+</span></span><span style="display:flex;"><span>				c <span style="color:#81a1c1">=</span> verifier<span style="color:#eceff4">(</span>A<span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#81a1c1;font-weight:bold">if</span> c<span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>					flag <span style="color:#81a1c1">=</span> <span style="color:#81a1c1">open</span><span style="color:#eceff4">(</span><span style="color:#a3be8c">&#34;flag.txt&#34;</span><span style="color:#eceff4">)</span><span style="color:#81a1c1">.</span>read<span style="color:#eceff4">()</span><span style="color:#81a1c1">.</span>strip<span style="color:#eceff4">()</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span><span style="color:#a3be8c">f</span><span style="color:#a3be8c">&#34;Le flag est : </span><span style="color:#a3be8c">{</span>flag<span style="color:#a3be8c">}</span><span style="color:#a3be8c">&#34;</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#81a1c1;font-weight:bold">else</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span><span style="color:#a3be8c">&#34;Erreur : le tableau n&#39;est pas trié&#34;</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span><span style="color:#a3be8c">f</span><span style="color:#a3be8c">&#34;Le tableau de départ était : </span><span style="color:#a3be8c">{</span>B<span style="color:#a3be8c">}</span><span style="color:#a3be8c">&#34;</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>					<span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span><span style="color:#a3be8c">f</span><span style="color:#a3be8c">&#34;Le tableau final est :       </span><span style="color:#a3be8c">{</span>A<span style="color:#a3be8c">}</span><span style="color:#a3be8c">&#34;</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span><span style="color:#a3be8c">&#34;Bye bye!&#34;</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>				<span style="color:#81a1c1;font-weight:bold">break</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>			<span style="color:#81a1c1;font-weight:bold">else</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>				usage<span style="color:#eceff4">()</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#81a1c1;font-weight:bold">except</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span><span style="color:#a3be8c">&#34;Erreur : vérifier les commandes envoyées.&#34;</span><span style="color:#eceff4">)</span>
+</span></span></code></pre></div><p>And all we have to do is write this in the function <code>trier(N)</code> :</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#81a1c1;font-weight:bold">for</span> i <span style="color:#81a1c1;font-weight:bold">in</span> <span style="color:#81a1c1">range</span><span style="color:#eceff4">(</span>N<span style="color:#eceff4">,</span> <span style="color:#b48ead">1</span><span style="color:#eceff4">,</span> <span style="color:#81a1c1">-</span><span style="color:#b48ead">1</span><span style="color:#eceff4">):</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#81a1c1;font-weight:bold">for</span> j <span style="color:#81a1c1;font-weight:bold">in</span> <span style="color:#81a1c1">range</span><span style="color:#eceff4">(</span>i<span style="color:#81a1c1">-</span><span style="color:#b48ead">1</span><span style="color:#eceff4">):</span>
+</span></span><span style="display:flex;"><span>		x <span style="color:#81a1c1">=</span> <span style="color:#81a1c1">int</span><span style="color:#eceff4">(</span>j<span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>		y <span style="color:#81a1c1">=</span> <span style="color:#81a1c1">int</span><span style="color:#eceff4">(</span>j<span style="color:#eceff4">)</span> <span style="color:#81a1c1">+</span> <span style="color:#b48ead">1</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span><span style="color:#a3be8c">f</span><span style="color:#a3be8c">&#34;x=</span><span style="color:#a3be8c">{</span>x<span style="color:#a3be8c">}</span><span style="color:#a3be8c">, y=</span><span style="color:#a3be8c">{</span>y<span style="color:#a3be8c">}</span><span style="color:#a3be8c">&#34;</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#81a1c1;font-weight:bold">if</span> comparer<span style="color:#eceff4">(</span>y<span style="color:#eceff4">,</span> x<span style="color:#eceff4">):</span>
+</span></span><span style="display:flex;"><span>			echanger<span style="color:#eceff4">(</span>x<span style="color:#eceff4">,</span>y<span style="color:#eceff4">)</span>
+</span></span></code></pre></div><p>That&rsquo;s what we call a <a href="https://en.wikipedia.org/wiki/Bubble_sort">&ldquo;Bubble sort&rdquo;</a>. All I had to do was to port in Python this pseudo-code from the Wikipedia page:</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>procedure bubbleSort<span style="color:#eceff4">(</span>A <span style="color:#eceff4">:</span> <span style="color:#81a1c1">list</span> of sortable items<span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>    n <span style="color:#81a1c1">:=</span> length<span style="color:#eceff4">(</span>A<span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>    repeat
+</span></span><span style="display:flex;"><span>        swapped <span style="color:#81a1c1">:=</span> false
+</span></span><span style="display:flex;"><span>        <span style="color:#81a1c1;font-weight:bold">for</span> i <span style="color:#81a1c1">:=</span> <span style="color:#b48ead">1</span> to n<span style="color:#81a1c1">-</span><span style="color:#b48ead">1</span> inclusive do
+</span></span><span style="display:flex;"><span>            <span style="color:#eceff4">{</span> <span style="color:#81a1c1;font-weight:bold">if</span> this pair <span style="color:#81a1c1;font-weight:bold">is</span> out of order <span style="color:#eceff4">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#81a1c1;font-weight:bold">if</span> A<span style="color:#eceff4">[</span>i<span style="color:#81a1c1">-</span><span style="color:#b48ead">1</span><span style="color:#eceff4">]</span> <span style="color:#81a1c1">&gt;</span> A<span style="color:#eceff4">[</span>i<span style="color:#eceff4">]</span> then
+</span></span><span style="display:flex;"><span>                <span style="color:#eceff4">{</span> swap them <span style="color:#81a1c1;font-weight:bold">and</span> remember something changed <span style="color:#eceff4">}</span>
+</span></span><span style="display:flex;"><span>                swap<span style="color:#eceff4">(</span>A<span style="color:#eceff4">[</span>i<span style="color:#81a1c1">-</span><span style="color:#b48ead">1</span><span style="color:#eceff4">],</span> A<span style="color:#eceff4">[</span>i<span style="color:#eceff4">])</span>
+</span></span><span style="display:flex;"><span>                swapped <span style="color:#81a1c1">:=</span> true
+</span></span><span style="display:flex;"><span>            end <span style="color:#81a1c1;font-weight:bold">if</span>
+</span></span><span style="display:flex;"><span>        end <span style="color:#81a1c1;font-weight:bold">for</span>
+</span></span><span style="display:flex;"><span>    until <span style="color:#81a1c1;font-weight:bold">not</span> swapped
+</span></span><span style="display:flex;"><span>end procedure
+</span></span></code></pre></div><p>We get:</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Le flag est : FCSC<span style="color:#81a1c1">{</span>e687c4749f175489512777c26c06f40801f66b8cf9da3d97bfaff4261f121459<span style="color:#81a1c1">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1">[</span>*<span style="color:#81a1c1">]</span> Closed connection to challenges.france-cybersecurity-challenge.fr port <span style="color:#b48ead">2051</span>
+</span></span></code></pre></div><h1 id="well-thanks">Well, thanks</h1>
+<p>Thanks for reading, I appreciate it. Add me on Discord if you want: <strong>REDACTED</strong>. See you guys in the next blog post&hellip;</p>
+
+  
+
+  </main>
+  <footer>
+    
+  </footer>
+</body>
+</html>

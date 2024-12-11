@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+
+<script src="/livereload.js?mindelay=10&amp;v=2&amp;port=6841&amp;path=livereload" data-no-instant defer></script><script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>c0w5lip@wired:~$</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+
+
+      <script src="/js/main.js"></script>
+
+
+</head>
+<body>
+  <header>
+    <h1>c0w5lip@wired:~$</h1>
+
+  <nav>
+    <ul>
+  <span class="menu-bracket">[</span> 
+  <ul style="list-style: none; padding: 0; margin: 0; display: inline-flex; align-items: center;">
+      <li class="menu-item"> 
+        <a href="/">home</a>
+      </li>
+      <li class="menu-item"> 
+        <a aria-current="true" class="ancestor" href="/posts/">posts</a>
+      </li>
+      <li class="menu-item"> 
+        <a href="/tags/">tags</a>
+      </li>
+      <li class="menu-item"> 
+        <a href="/about/">about</a>
+      </li>
+  </ul>
+  <span class="menu-bracket">]</span> 
+    </ul>
+  </nav>
+
+
+  </header>
+  <main>
+    
+      <div class="tags">
+      🏷️
+      
+        <a href="/tags/write-up" class="tag">write-up</a>
+      
+        <a href="/tags/cryptography" class="tag">cryptography</a>
+      
+      </div>
+    
+    
+    
+  
+    <h1>Write Up - IrisCTF 2023: babynotrsa | Why you should beware tweaking RSA</h1>
+  
+
+  <h1 id="informations">Informations</h1>
+<p><del><strong><a href="https://youtu.be/Vriy8zBBlz0">Video version (French)</a></strong></del></p>
+<p>Sincere acknowledgements to <a href="http://aassfxxx.infos.st/">aaSSfxxx</a> who helped me a bit with mathematical demonstrations and kindly read my write up before I posted it.</p>
+<p>This challenge is one of the ones I flagged during the <a href="https://ctftime.org/event/1774/">IrisCTF 2023</a>. Thanks to the organizers, I didn&rsquo;t tried lots challenges but that one was particulary fun as a beginner.</p>
+<h1 id="challenge">Challenge</h1>
+<p>Name: babynotrsa</p>
+<p>Author: sera</p>
+<p>Description:</p>
+<blockquote>
+<p>Everyone knows RSA, but everyone also knows that RSA is slow. Why not just use a faster operation than exponentiation?</p>
+</blockquote>
+<p>Files:</p>
+<p><code>chal.py</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#81a1c1;font-weight:bold">from</span> <span style="color:#8fbcbb">Crypto.Util.number</span> <span style="color:#81a1c1;font-weight:bold">import</span> getStrongPrime
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#616e87;font-style:italic"># We get 2 1024-bit primes</span>
+</span></span><span style="display:flex;"><span>p <span style="color:#81a1c1">=</span> getStrongPrime<span style="color:#eceff4">(</span><span style="color:#b48ead">1024</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>q <span style="color:#81a1c1">=</span> getStrongPrime<span style="color:#eceff4">(</span><span style="color:#b48ead">1024</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#616e87;font-style:italic"># We calculate the modulus</span>
+</span></span><span style="display:flex;"><span>n <span style="color:#81a1c1">=</span> p<span style="color:#81a1c1">*</span>q
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#616e87;font-style:italic"># We generate our encryption key</span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1;font-weight:bold">import</span> <span style="color:#8fbcbb">secrets</span>
+</span></span><span style="display:flex;"><span>e <span style="color:#81a1c1">=</span> secrets<span style="color:#81a1c1">.</span>randbelow<span style="color:#eceff4">(</span>n<span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#616e87;font-style:italic"># We take our input</span>
+</span></span><span style="display:flex;"><span>flag <span style="color:#81a1c1">=</span> <span style="color:#a3be8c">b</span><span style="color:#a3be8c">&#34;irisctf</span><span style="color:#a3be8c">{REDACTED_REDACTED_REDACTED}</span><span style="color:#a3be8c">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1;font-weight:bold">assert</span> <span style="color:#81a1c1">len</span><span style="color:#eceff4">(</span>flag<span style="color:#eceff4">)</span> <span style="color:#81a1c1">==</span> <span style="color:#b48ead">35</span>
+</span></span><span style="display:flex;"><span><span style="color:#616e87;font-style:italic"># and convert it to a number</span>
+</span></span><span style="display:flex;"><span>flag <span style="color:#81a1c1">=</span> <span style="color:#81a1c1">int</span><span style="color:#81a1c1">.</span>from_bytes<span style="color:#eceff4">(</span>flag<span style="color:#eceff4">,</span> byteorder<span style="color:#81a1c1">=</span><span style="color:#a3be8c">&#39;big&#39;</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#616e87;font-style:italic"># We encrypt our input</span>
+</span></span><span style="display:flex;"><span>encrypted <span style="color:#81a1c1">=</span> <span style="color:#eceff4">(</span>flag <span style="color:#81a1c1">*</span> e<span style="color:#eceff4">)</span> <span style="color:#81a1c1">%</span> n
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span><span style="color:#a3be8c">f</span><span style="color:#a3be8c">&#34;n: </span><span style="color:#a3be8c">{</span>n<span style="color:#a3be8c">}</span><span style="color:#a3be8c">&#34;</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span><span style="color:#a3be8c">f</span><span style="color:#a3be8c">&#34;e: </span><span style="color:#a3be8c">{</span>e<span style="color:#a3be8c">}</span><span style="color:#a3be8c">&#34;</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span><span style="color:#a3be8c">f</span><span style="color:#a3be8c">&#34;flag: </span><span style="color:#a3be8c">{</span>encrypted<span style="color:#a3be8c">}</span><span style="color:#a3be8c">&#34;</span><span style="color:#eceff4">)</span>
+</span></span></code></pre></div><p><code>output.txt</code> :</p>
+<pre tabindex="0"><code>n: 21429933885346644587620272790089165813353259223649897308397918491861562279767580488441831451651834802520437234248670652477414296159324726172158330221397420877323921934377321483041598028053870169281419856238830264612049920637819183013812186448416408328958360799645342598727238977986741643705720539702955864527935398839069236768630867447760912744208154645904678859979378604386855741350220991958191408182147658532111413386776058224418484895056146180001830405844881486308594953615999140110712045286000170660686758188247928230655746746482354748673482506070246808187808961599576834080344066055446605664648340486804023919467
+e: 10788856448030235429585145974385410619185237539198378911887172763282204686697141640582780419040340318300048024100764883750608733331571719088729202796193207904701854848679412033514037149161609202467086017862616635522167577463675349103892366486246290794304652162107619408011548841664240624935414339021041162505899467159623692906986841033101688573177710503499081107294555688550493634416552587963816327790111808356639558596438537569271043190414208204773219496030644456745185896540608008662177117212000718802474957268532153146989410300300554162811564064457762004188326986236869603714437275058878379647196886872404148116134
+flag: 3954523654845598592730156937269688140867480061118457307435945875579028695730063528424973907208923014508950419982702682082417623843946231057553311028711409093751376287876799688357176816093484535703797332422565021382453879908968161161537921292725907853309522100738603080298951279637316809695591295752657105226749125868510570125512146397480808774515489938198191435285342823923715673372695893409325086032930406554421670815433958591841773705563688270739343539481283865883427560667086249616210745997056621098406247201301461721906304555526293017773805845093545204570993288514598261070097976786800172141678030841959348372097
+</code></pre><h2 id="first-approach">First approach</h2>
+<p>Let be $m$ the plaintext flag and $c$ the encrypted flag (from <code>output.txt</code>).</p>
+<p><strong>Reminder</strong>: RSA cryptosystem is based on <a href="https://en.wikipedia.org/wiki/Modular_exponentiation">modular exponentation</a>, and compute messages this way:
+$$c = m ^ e \pmod n$$</p>
+<p>The algorithm looks almost like a classic RSA encryption.
+However, unlike RSA, this algorithm uses multiplication instead of exponentation as a way to compute $c$$:
+$$c = m \times e \pmod n$$</p>
+<p>This implies that the decryption is made like this:
+$$m = c \times d \pmod n$$</p>
+<p>Where  \(x^2 + y^2 = z^2\) is the <a href="https://en.wikipedia.org/wiki/Modular_multiplicative_inverse">modular multiplicative inverse</a> of $e \pmod n$. This number, also called &ldquo;secret exponent&rdquo;, is usually part of the RSA private key $(d,n)$, used for decrypting messages.</p>
+<p>Throughout all this write up, we&rsquo;ll admit that $e$ and $n$ are coprimes, because we can tell from the piece of <code>chal.py</code> below that the chance for them to not being coprime (if the <code>randbelow(n)</code> fonction returns $p$ or $q$) is equal to: $\frac{1}{2^{(2 \times 1024)}} \iff \frac{1}{2^{1024}}$, which is honestly quite low.</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#616e87;font-style:italic"># We get 2 1024-bit primes</span>
+</span></span><span style="display:flex;"><span>p <span style="color:#81a1c1">=</span> getStrongPrime<span style="color:#eceff4">(</span><span style="color:#b48ead">1024</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>q <span style="color:#81a1c1">=</span> getStrongPrime<span style="color:#eceff4">(</span><span style="color:#b48ead">1024</span><span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#616e87;font-style:italic"># We calculate the modulus</span>
+</span></span><span style="display:flex;"><span>n <span style="color:#81a1c1">=</span> p<span style="color:#81a1c1">*</span>q
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#616e87;font-style:italic"># We generate our encryption key</span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1;font-weight:bold">import</span> <span style="color:#8fbcbb">secrets</span>
+</span></span><span style="display:flex;"><span>e <span style="color:#81a1c1">=</span> secrets<span style="color:#81a1c1">.</span>randbelow<span style="color:#eceff4">(</span>n<span style="color:#eceff4">)</span>
+</span></span></code></pre></div><h2 id="so-whats-the-matter-"><em>So, what&rsquo;s the matter ?</em></h2>
+<p>To decrypt $c$, we have to retrieve $d$. But as we&rsquo;ll see, due to the fact that the algorithm uses multiplication instead of exponentation, $d$ is actually easy to compute.</p>
+<h3 id="first-method">First method</h3>
+<p>Let&rsquo;s define two functions:
+$$encrypt(m) \rightarrow m \times e \pmod n$$
+$$decrypt(c) \rightarrow c \times d \pmod n$$</p>
+<p>Therefore:
+$$m \pmod n = decrypt(encrypt(m))$$
+$$\iff m \pmod n = (m \times e \pmod n) \times d \pmod n$$
+$$\iff m \pmod n = m \times e \times d \pmod n$$</p>
+<p>To satisfy this equation, we must have $e \times d \equiv 1 \pmod n$.</p>
+<p>Which is the same as:
+$$d \equiv e^-1 \pmod n$$</p>
+<p>We got $d$.</p>
+<h3 id="second-method-bézouts-identity-and-extended-euclidean-algorithm">Second method (Bézout’s identity and extended Euclidean algorithm)</h3>
+<p>Admiting $e$ and $n$ are coprimes, we have: $gcd(e,n) = 1$.
+Yet, we know from the <a href="https://en.wikipedia.org/wiki/B%C3%A9zout%27s_identity">Bézout&rsquo;s identity</a> that the following diophantine equation admits a solution couple $(u,v) \in \mathbb Z$$:
+$$e \times u + n \times v = gcd(e,n) \iff e \times u + n \times v = 1$$</p>
+<p>From there, and because $gcd(e,n) = 1$, the <a href="https://en.wikipedia.org/wiki/Extended_Euclidean_algorithm">extended Euclidean algorithm</a> tells us that in this equation, $u$ is the inverse of $e \pmod n$$; and we know for a fact that the inverse is defined by this expression:
+$$u \equiv e^-1 \pmod n$$</p>
+<p>This is exactly what we were searching for. Replacing $u$ by $d$, we get our solution:
+$$d \equiv e^-1 \pmod n$$</p>
+<h2 id="solution">Solution</h2>
+<p>We compute $d$ this way:
+$$d \equiv e^-1 \pmod n$$</p>
+<p>Once we&rsquo;ve got $d$, we decrypt our ciphertext (and thus, retrieve $m$):
+$$m \equiv c \times d \pmod n$$</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#81a1c1;font-weight:bold">from</span> <span style="color:#8fbcbb">Crypto.Util.number</span> <span style="color:#81a1c1;font-weight:bold">import</span> <span style="color:#81a1c1">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>n <span style="color:#81a1c1">=</span> <span style="color:#b48ead">21429933885346644587620272790089165813353259223649897308397918491861562279767580488441831451651834802520437234248670652477414296159324726172158330221397420877323921934377321483041598028053870169281419856238830264612049920637819183013812186448416408328958360799645342598727238977986741643705720539702955864527935398839069236768630867447760912744208154645904678859979378604386855741350220991958191408182147658532111413386776058224418484895056146180001830405844881486308594953615999140110712045286000170660686758188247928230655746746482354748673482506070246808187808961599576834080344066055446605664648340486804023919467</span>
+</span></span><span style="display:flex;"><span>e <span style="color:#81a1c1">=</span> <span style="color:#b48ead">10788856448030235429585145974385410619185237539198378911887172763282204686697141640582780419040340318300048024100764883750608733331571719088729202796193207904701854848679412033514037149161609202467086017862616635522167577463675349103892366486246290794304652162107619408011548841664240624935414339021041162505899467159623692906986841033101688573177710503499081107294555688550493634416552587963816327790111808356639558596438537569271043190414208204773219496030644456745185896540608008662177117212000718802474957268532153146989410300300554162811564064457762004188326986236869603714437275058878379647196886872404148116134</span>
+</span></span><span style="display:flex;"><span>flag <span style="color:#81a1c1">=</span> <span style="color:#b48ead">3954523654845598592730156937269688140867480061118457307435945875579028695730063528424973907208923014508950419982702682082417623843946231057553311028711409093751376287876799688357176816093484535703797332422565021382453879908968161161537921292725907853309522100738603080298951279637316809695591295752657105226749125868510570125512146397480808774515489938198191435285342823923715673372695893409325086032930406554421670815433958591841773705563688270739343539481283865883427560667086249616210745997056621098406247201301461721906304555526293017773805845093545204570993288514598261070097976786800172141678030841959348372097</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>d <span style="color:#81a1c1">=</span> <span style="color:#81a1c1">pow</span><span style="color:#eceff4">(</span>e<span style="color:#eceff4">,</span> <span style="color:#81a1c1">-</span><span style="color:#b48ead">1</span><span style="color:#eceff4">,</span> n<span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>decrypted_flag <span style="color:#81a1c1">=</span> flag <span style="color:#81a1c1">*</span> d <span style="color:#81a1c1">%</span> n
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span>long_to_bytes<span style="color:#eceff4">(</span>decrypted_flag<span style="color:#eceff4">)</span><span style="color:#81a1c1">.</span>decode<span style="color:#eceff4">())</span>
+</span></span></code></pre></div><pre tabindex="0"><code>irisctf{discrete_divide_isn&#39;t_hard}
+</code></pre><h2 id="bonus--small-example-on-the-extended-euclidean-algorithm">Bonus : small example on the extended Euclidean algorithm</h2>
+<p>The extended Euclidean algorithm allows us to not only to find the gcd of two number, but also to find Bézout coefficients $(u,v) \in \mathbb Z$ for diophantines equations such as this one :
+$$e \times u + n \times v = gcd(e,n)$$</p>
+<p>The book <a href="https://en.wikipedia.org/wiki/Introduction_to_Algorithms"><em>Introduction to Algorithms</em></a> (written in part by one of the inventors of RSA; for the fun fact) gives a pseudocode recursive version of the algorithm.
+Here is a Python code snippet I wrote from it to fit our example :</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-py" data-lang="py"><span style="display:flex;"><span><span style="color:#81a1c1;font-weight:bold">def</span> <span style="color:#88c0d0">egcd</span><span style="color:#eceff4">(</span>e<span style="color:#eceff4">,</span> n<span style="color:#eceff4">):</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1;font-weight:bold">if</span> n <span style="color:#81a1c1">==</span> <span style="color:#b48ead">0</span><span style="color:#eceff4">:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#81a1c1;font-weight:bold">return</span> e<span style="color:#eceff4">,</span> <span style="color:#b48ead">1</span><span style="color:#eceff4">,</span> <span style="color:#b48ead">0</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    gcd<span style="color:#eceff4">,</span> u<span style="color:#eceff4">,</span> v <span style="color:#81a1c1">=</span> egcd<span style="color:#eceff4">(</span>n<span style="color:#eceff4">,</span> e <span style="color:#81a1c1">%</span> n<span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1;font-weight:bold">return</span> gcd<span style="color:#eceff4">,</span> v<span style="color:#eceff4">,</span> u <span style="color:#81a1c1">-</span> <span style="color:#eceff4">(</span>e<span style="color:#81a1c1">//</span>n<span style="color:#eceff4">)</span><span style="color:#81a1c1">*</span>v
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>e<span style="color:#eceff4">,</span> n <span style="color:#81a1c1">=</span> <span style="color:#b48ead">7</span><span style="color:#eceff4">,</span> <span style="color:#b48ead">33</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#81a1c1">=</span> egcd<span style="color:#eceff4">(</span>e<span style="color:#eceff4">,</span> n<span style="color:#eceff4">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1">print</span><span style="color:#eceff4">(</span><span style="color:#a3be8c">f</span><span style="color:#a3be8c">&#34;gcd(</span><span style="color:#a3be8c">{</span>e<span style="color:#a3be8c">}</span><span style="color:#a3be8c">,</span><span style="color:#a3be8c">{</span>n<span style="color:#a3be8c">}</span><span style="color:#a3be8c">) = </span><span style="color:#a3be8c">{</span>result<span style="color:#eceff4">[</span><span style="color:#b48ead">0</span><span style="color:#eceff4">]</span><span style="color:#a3be8c">}</span><span style="color:#a3be8c">; u = </span><span style="color:#a3be8c">{</span>result<span style="color:#eceff4">[</span><span style="color:#b48ead">2</span><span style="color:#eceff4">]</span><span style="color:#a3be8c">}</span><span style="color:#a3be8c">; v = </span><span style="color:#a3be8c">{</span>result<span style="color:#eceff4">[</span><span style="color:#b48ead">1</span><span style="color:#eceff4">]</span><span style="color:#a3be8c">}</span><span style="color:#a3be8c">&#34;</span><span style="color:#eceff4">)</span>
+</span></span></code></pre></div><p>With $e = 7$ and $n = 33$, we get this output: $gcd(7,33) = 1; u = -14; v = 3$.
+And we notice that: $e \times u + n \times v = gcd(e,n)$ works :
+$$7 \times -14 + 33 \times 3 = 1$$</p>
+<p>But also, we notice that the definition of $u$ being the inverse of $e \pmod n$ (only if $gcd(e,n)=1$) works:
+$$e \times u \equiv 1 \pmod n$$
+$$7 \times -14 \equiv 1 \pmod {33}$$</p>
+<p>I won&rsquo;t explain much about this algorithm because it would weigh down the article (and I couldn&rsquo;t see myself explaining it in details in this write up to be honest).</p>
+<p>I hope you learnt something (that modifiying just a tiny part of a cryptosystem can be crucial, for example) reading this wu/article. Give me feedback on Discord (<strong>REDACTED</strong>) or my other social medias if you liked it; I would really appreciate it.</p>
+<p>Thanks again to <a href="http://aassfxxx.infos.st/">aaSSfxxx</a> and the <a href="https://irissec.xyz/">IrisSec</a> team :)</p>
+
+  
+
+  </main>
+  <footer>
+    
+  </footer>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cryptography on c0w5lip@wired:~$</title>
+    <link>http://localhost:6841/tags/cryptography/</link>
+    <description>Recent content in Cryptography on c0w5lip@wired:~$</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 11 Jan 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:6841/tags/cryptography/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Write Up - IrisCTF 2023: babynotrsa | Why you should beware tweaking RSA</title>
+      <link>http://localhost:6841/posts/2023-01-11-irisctf-2023-babynotrsa/</link>
+      <pubDate>Wed, 11 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:6841/posts/2023-01-11-irisctf-2023-babynotrsa/</guid>
+      <description>&lt;h1 id=&#34;informations&#34;&gt;Informations&lt;/h1&gt;&#xA;&lt;p&gt;&lt;del&gt;&lt;strong&gt;&lt;a href=&#34;https://youtu.be/Vriy8zBBlz0&#34;&gt;Video version (French)&lt;/a&gt;&lt;/strong&gt;&lt;/del&gt;&lt;/p&gt;&#xA;&lt;p&gt;Sincere acknowledgements to &lt;a href=&#34;http://aassfxxx.infos.st/&#34;&gt;aaSSfxxx&lt;/a&gt; who helped me a bit with mathematical demonstrations and kindly read my write up before I posted it.&lt;/p&gt;&#xA;&lt;p&gt;This challenge is one of the ones I flagged during the &lt;a href=&#34;https://ctftime.org/event/1774/&#34;&gt;IrisCTF 2023&lt;/a&gt;. Thanks to the organizers, I didn&amp;rsquo;t tried lots challenges but that one was particulary fun as a beginner.&lt;/p&gt;&#xA;&lt;h1 id=&#34;challenge&#34;&gt;Challenge&lt;/h1&gt;&#xA;&lt;p&gt;Name: babynotrsa&lt;/p&gt;&#xA;&lt;p&gt;Author: sera&lt;/p&gt;&#xA;&lt;p&gt;Description:&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Everyone knows RSA, but everyone also knows that RSA is slow. Why not just use a faster operation than exponentiation?&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

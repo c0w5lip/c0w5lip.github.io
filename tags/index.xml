@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Terminal</title>
-    <link>/tags/</link>
-    <description>Recent content in Tags on Terminal</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <title>Tags on c0w5lip@wired:~$</title>
+    <link>http://localhost:6841/tags/</link>
+    <description>Recent content in Tags on c0w5lip@wired:~$</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 18 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:6841/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Write-Up</title>
+      <link>http://localhost:6841/tags/write-up/</link>
+      <pubDate>Sun, 18 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:6841/tags/write-up/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Cryptography</title>
+      <link>http://localhost:6841/tags/cryptography/</link>
+      <pubDate>Wed, 11 Jan 2023 00:00:00 +0000</pubDate>
+      <guid>http://localhost:6841/tags/cryptography/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>
