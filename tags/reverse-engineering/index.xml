@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>reverse-engineering on c0w5lip@wired:~$</title>
+    <title>Reverse-Engineering on c0w5lip@wired:~$</title>
     <link>https://c0w5lip.github.io/tags/reverse-engineering/</link>
-    <description>Recent content in reverse-engineering on c0w5lip@wired:~$</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://c0w5lip.github.io/tags/reverse-engineering/index.xml" rel="self" type="application/rss+xml" />
+    <description>Recent content in Reverse-Engineering on c0w5lip@wired:~$</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="https://c0w5lip.github.io/tags/reverse-engineering/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ESP32-powered CAN injection</title>
       <link>https://c0w5lip.github.io/posts/2024-12-25-root-xmas/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://c0w5lip.github.io/posts/2024-12-25-root-xmas/</guid>
-      <description>Work in progress 😼</description>
+      <description>&lt;p&gt;Work in progress 😼&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>
