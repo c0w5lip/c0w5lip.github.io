@@ -35,7 +35,7 @@ MathJax = {
         <a href="/">home</a>
       </li>
       <li class="menu-item"> 
-        <a aria-current="true" class="ancestor" href="/posts/">posts</a>
+        <a href="/posts/">posts</a>
       </li>
       <li class="menu-item"> 
         <a href="/tags/">tags</a>
@@ -61,7 +61,16 @@ MathJax = {
     
     
     
-  <h1>write up - fcsc 2023</h1>
+  
+    <h1>Write Up - FCSC 2023</h1>
+  
+
+  
+    <div class="disclaimer">
+      <center><strong>⚠️ This post is under /archives/. DO NOT take its content seriously.</strong></center>
+    </div>
+  
+
   <h1 id="about-this">About this</h1>
 <p>I did some challenges from the <a href="https://france-cybersecurity-challenge.fr/">France Cybersecurity Challenge</a> of this year, so here just 2 write ups (cuz I may not be really good at explaining how to solve shit). I didn&rsquo;t solved any tricky chall due to my lack of implication in the CTF, but some of them were pretty fun though, so thanks to the organizers.</p>
 <p>I finished 618/1364 on global ranking, and 67/188 on junior ranking.</p>
@@ -72,7 +81,7 @@ Description:</p>
 
 SHA256(Microsoft-Windows-PowerShell%4Operational.evtx) = 770b92f7c98ffb708c3e364753ee4bb569ccc810dd5891cbaf1363c2063ddd78.
 </code></pre><p>As we open the file <code>Microsoft-Windows-PowerShell4Operational.evtx</code> in Event Viewer (<code>.evtx</code> being the extension for Windows Event Viewer log-files), we encounter a few events :</p>
-<p><img src="events.png" alt=""></p>
+<p><img src="/images/2023-04-29-wu-fcsc-2023/events.png" alt=""></p>
 <p>One of them contains the following piece of PowerShell code:</p>
 <div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>$l <span style="color:#eceff4">=</span> 0x46<span style="color:#eceff4">,</span> 0x42<span style="color:#eceff4">,</span> 0x51<span style="color:#eceff4">,</span> 0x40<span style="color:#eceff4">,</span> 0x7F<span style="color:#eceff4">,</span> 0x3C<span style="color:#eceff4">,</span> 0x3E<span style="color:#eceff4">,</span> 0x64<span style="color:#eceff4">,</span> 0x31<span style="color:#eceff4">,</span> 0x31<span style="color:#eceff4">,</span> 0x6E<span style="color:#eceff4">,</span> 0x32<span style="color:#eceff4">,</span> 0x34<span style="color:#eceff4">,</span> 0x68<span style="color:#eceff4">,</span> 0x3B<span style="color:#eceff4">,</span> 0x6E<span style="color:#eceff4">,</span> 0x25<span style="color:#eceff4">,</span> 0x25<span style="color:#eceff4">,</span> 0x24<span style="color:#eceff4">,</span> 0x77<span style="color:#eceff4">,</span> 0x77<span style="color:#eceff4">,</span> 0x73<span style="color:#eceff4">,</span> 0x20<span style="color:#eceff4">,</span> 0x75<span style="color:#eceff4">,</span> 0x29<span style="color:#eceff4">,</span> 0x7C<span style="color:#eceff4">,</span> 0x7B<span style="color:#eceff4">,</span> 0x2D<span style="color:#eceff4">,</span> 0x79<span style="color:#eceff4">,</span> 0x29<span style="color:#eceff4">,</span> 0x29<span style="color:#eceff4">,</span> 0x29<span style="color:#eceff4">,</span> 0x10<span style="color:#eceff4">,</span> 0x13<span style="color:#eceff4">,</span> 0x1B<span style="color:#eceff4">,</span> 0x14<span style="color:#eceff4">,</span> 0x16<span style="color:#eceff4">,</span> 0x40<span style="color:#eceff4">,</span> 0x47<span style="color:#eceff4">,</span> 0x16<span style="color:#eceff4">,</span> 0x4B<span style="color:#eceff4">,</span> 0x4C<span style="color:#eceff4">,</span> 0x13<span style="color:#eceff4">,</span> 0x4A<span style="color:#eceff4">,</span> 0x48<span style="color:#eceff4">,</span> 0x1A<span style="color:#eceff4">,</span> 0x1C<span style="color:#eceff4">,</span> 0x19<span style="color:#eceff4">,</span> 0x2<span style="color:#eceff4">,</span> 0x5<span style="color:#eceff4">,</span> 0x4<span style="color:#eceff4">,</span> 0x7<span style="color:#eceff4">,</span> 0x2<span style="color:#eceff4">,</span> 0x5<span style="color:#eceff4">,</span> 0x2<span style="color:#eceff4">,</span> 0x0<span style="color:#eceff4">,</span> 0xD<span style="color:#eceff4">,</span> 0xA<span style="color:#eceff4">,</span> 0x59<span style="color:#eceff4">,</span> 0xF<span style="color:#eceff4">,</span> 0x5A<span style="color:#eceff4">,</span> 0xA<span style="color:#eceff4">,</span> 0x7<span style="color:#eceff4">,</span> 0x5D<span style="color:#eceff4">,</span> 0x73<span style="color:#eceff4">,</span> 0x20<span style="color:#eceff4">,</span> 0x20<span style="color:#eceff4">,</span> 0x27<span style="color:#eceff4">,</span> 0x77<span style="color:#eceff4">,</span> 0x38<span style="color:#eceff4">,</span> 0x4B<span style="color:#eceff4">,</span> 0x4D
 </span></span><span style="display:flex;"><span>$s <span style="color:#eceff4">=</span> <span style="color:#a3be8c">&#34;&#34;</span>

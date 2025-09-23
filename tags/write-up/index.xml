@@ -9,10 +9,10 @@
     <lastBuildDate>Wed, 25 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://c0w5lip.github.io/tags/write-up/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Root-Xmas</title>
-      <link>https://c0w5lip.github.io/posts/2024-12-25-root-xmas/</link>
+      <link>https://c0w5lip.github.io/archives/2024-12-25-root-xmas/</link>
       <pubDate>Wed, 25 Dec 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://c0w5lip.github.io/posts/2024-12-25-root-xmas/</guid>
+      <guid>https://c0w5lip.github.io/archives/2024-12-25-root-xmas/</guid>
       <description>Day 06 - Unwrap The Gift Challenge Root-Me&amp;rsquo;s Santa is being very generous this year, giving everyone who comes to see him a little present, but he&amp;rsquo;s made sure you can&amp;rsquo;t open it until the 25th&amp;hellip;
 Author : Mika nc 163.172.68.42 10006 app.py:
 from os import environ, urandom from Crypto.Cipher import AES from Crypto.Util.Padding import pad from binascii import hexlify SANTA=&amp;#34;&amp;#34;&amp;#34; .-&amp;#34;&amp;#34;-. /,..___\\ () {_____} (/-@-@-\) {`-=^=-&amp;#39;} { `-&amp;#39; } Oh Oh Oh!</description>
@@ -20,30 +20,30 @@ from os import environ, urandom from Crypto.Cipher import AES from Crypto.Util.P
     
     <item>
       <title>write-up: Passe ton Hack d&#39;abord 2024: 1 programming challenge</title>
-      <link>https://c0w5lip.github.io/posts/2024-02-18-wu-pthd2024/</link>
+      <link>https://c0w5lip.github.io/archives/2024-02-18-wu-pthd2024/</link>
       <pubDate>Sun, 18 Feb 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://c0w5lip.github.io/posts/2024-02-18-wu-pthd2024/</guid>
+      <guid>https://c0w5lip.github.io/archives/2024-02-18-wu-pthd2024/</guid>
       <description>I&amp;rsquo;ve tried to do some challenges during that CTF. Here&amp;rsquo;s my solution for the first programming challenge:
 from pwn import * r = remote(&amp;#39;37.59.31.202&amp;#39;, 2000) print(r.recv(1024)) r.sendline(b&amp;#39;1&amp;#39;) print(r.recv(1024)) i = 1 while True: i += 1 if i == 102: print(r.recv(1024)) break evaluated = eval(r.recvline().decode()) print(&amp;#34;[*] evaluated: {}&amp;#34;.format(evaluated)) r.sendline(str(evaluated).encode()) r.close() </description>
     </item>
     
     <item>
       <title>Write Up - FCSC 2023</title>
-      <link>https://c0w5lip.github.io/posts/2023-04-29-wu-fcsc-2023/</link>
+      <link>https://c0w5lip.github.io/archives/2023-04-29-wu-fcsc-2023/</link>
       <pubDate>Sat, 29 Apr 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://c0w5lip.github.io/posts/2023-04-29-wu-fcsc-2023/</guid>
+      <guid>https://c0w5lip.github.io/archives/2023-04-29-wu-fcsc-2023/</guid>
       <description>About this I did some challenges from the France Cybersecurity Challenge of this year, so here just 2 write ups (cuz I may not be really good at explaining how to solve shit). I didn&amp;rsquo;t solved any tricky chall due to my lack of implication in the CTF, but some of them were pretty fun though, so thanks to the organizers.
 I finished 618/1364 on global ranking, and 67/188 on junior ranking.</description>
     </item>
     
     <item>
       <title>Write Up - CTF After Dark Winter 2023: Jester</title>
-      <link>https://c0w5lip.github.io/posts/2023-03-09-wu-after-dark-winter-2023-jester/</link>
+      <link>https://c0w5lip.github.io/archives/2023-03-09-wu-after-dark-winter-2023-jester/</link>
       <pubDate>Thu, 09 Mar 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://c0w5lip.github.io/posts/2023-03-09-wu-after-dark-winter-2023-jester/</guid>
+      <guid>https://c0w5lip.github.io/archives/2023-03-09-wu-after-dark-winter-2023-jester/</guid>
       <description>Informations CTF: CTF After Dark Winter 2023
 Author: Jerry
 Challenge: https://jester.acmcyber.com/
@@ -53,10 +53,10 @@ We first encounter a page that ask us to compute an addition on random numbers i
     
     <item>
       <title>Write Up - IrisCTF 2023: babynotrsa | Why you should beware tweaking RSA</title>
-      <link>https://c0w5lip.github.io/posts/2023-01-11-irisctf-2023-babynotrsa/</link>
+      <link>https://c0w5lip.github.io/archives/2023-01-11-irisctf-2023-babynotrsa/</link>
       <pubDate>Wed, 11 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://c0w5lip.github.io/posts/2023-01-11-irisctf-2023-babynotrsa/</guid>
+      <guid>https://c0w5lip.github.io/archives/2023-01-11-irisctf-2023-babynotrsa/</guid>
       <description>Informations Video version (French)
 Sincere acknowledgements to aaSSfxxx who helped me a bit with mathematical demonstrations and kindly read my write up before I posted it.
 This challenge is one of the ones I flagged during the IrisCTF 2023. Thanks to the organizers, I didn&amp;rsquo;t tried lots challenges but that one was particulary fun as a beginner.

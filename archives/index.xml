@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>home on c0w5lip@wired:~$</title>
-    <link>https://c0w5lip.github.io/</link>
-    <description>Recent content in home on c0w5lip@wired:~$</description>
+    <title>archives on c0w5lip@wired:~$</title>
+    <link>https://c0w5lip.github.io/archives/</link>
+    <description>Recent content in archives on c0w5lip@wired:~$</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://c0w5lip.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 25 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://c0w5lip.github.io/archives/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Root-Xmas</title>
       <link>https://c0w5lip.github.io/archives/2024-12-25-root-xmas/</link>
@@ -64,26 +64,6 @@ Challenge Name: babynotrsa
 Author: sera
 Description:
 Everyone knows RSA, but everyone also knows that RSA is slow.</description>
-    </item>
-    
-    <item>
-      <title>about</title>
-      <link>https://c0w5lip.github.io/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://c0w5lip.github.io/about/</guid>
-      <description>whoami Student interested in low-level security. CTF enjoyer. Feel welcome to reach me on Discord or X: @c0w5lip
-friends I highly recommend you check out these:
-aaSSfxxx </description>
-    </item>
-    
-    <item>
-      <title>ESP32-powered CAN injection</title>
-      <link>https://c0w5lip.github.io/posts/2024-12-25-root-xmas/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://c0w5lip.github.io/posts/2024-12-25-root-xmas/</guid>
-      <description>Work in progress 😼</description>
     </item>
     
   </channel>

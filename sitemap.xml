@@ -2,13 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://c0w5lip.github.io/archives/</loc>
+    <lastmod>2024-12-25T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://c0w5lip.github.io/tags/cryptography/</loc>
     <lastmod>2024-12-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://c0w5lip.github.io/posts/</loc>
+    <loc>https://c0w5lip.github.io/</loc>
     <lastmod>2024-12-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://c0w5lip.github.io/posts/2024-12-25-root-xmas/</loc>
+    <loc>https://c0w5lip.github.io/archives/2024-12-25-root-xmas/</loc>
     <lastmod>2024-12-25T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://c0w5lip.github.io/tags/</loc>
@@ -17,24 +20,28 @@
     <loc>https://c0w5lip.github.io/tags/write-up/</loc>
     <lastmod>2024-12-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://c0w5lip.github.io/posts/2024-02-18-wu-pthd2024/</loc>
+    <loc>https://c0w5lip.github.io/archives/2024-02-18-wu-pthd2024/</loc>
     <lastmod>2024-02-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://c0w5lip.github.io/posts/2023-04-29-wu-fcsc-2023/</loc>
+    <loc>https://c0w5lip.github.io/archives/2023-04-29-wu-fcsc-2023/</loc>
     <lastmod>2023-04-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://c0w5lip.github.io/posts/2023-03-09-wu-after-dark-winter-2023-jester/</loc>
+    <loc>https://c0w5lip.github.io/archives/2023-03-09-wu-after-dark-winter-2023-jester/</loc>
     <lastmod>2023-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://c0w5lip.github.io/posts/2023-01-11-irisctf-2023-babynotrsa/</loc>
+    <loc>https://c0w5lip.github.io/archives/2023-01-11-irisctf-2023-babynotrsa/</loc>
     <lastmod>2023-01-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://c0w5lip.github.io/about/</loc>
-    <lastmod>1970-01-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://c0w5lip.github.io/</loc>
-    <lastmod>1970-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://c0w5lip.github.io/categories/</loc>
+  </url><url>
+    <loc>https://c0w5lip.github.io/posts/2024-12-25-root-xmas/</loc>
+  </url><url>
+    <loc>https://c0w5lip.github.io/tags/hardware/</loc>
+  </url><url>
+    <loc>https://c0w5lip.github.io/posts/</loc>
+  </url><url>
+    <loc>https://c0w5lip.github.io/tags/reverse-engineering/</loc>
   </url>
 </urlset>

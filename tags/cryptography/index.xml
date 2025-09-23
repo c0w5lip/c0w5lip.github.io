@@ -9,10 +9,10 @@
     <lastBuildDate>Wed, 25 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://c0w5lip.github.io/tags/cryptography/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Root-Xmas</title>
-      <link>https://c0w5lip.github.io/posts/2024-12-25-root-xmas/</link>
+      <link>https://c0w5lip.github.io/archives/2024-12-25-root-xmas/</link>
       <pubDate>Wed, 25 Dec 2024 00:00:00 +0000</pubDate>
       
-      <guid>https://c0w5lip.github.io/posts/2024-12-25-root-xmas/</guid>
+      <guid>https://c0w5lip.github.io/archives/2024-12-25-root-xmas/</guid>
       <description>Day 06 - Unwrap The Gift Challenge Root-Me&amp;rsquo;s Santa is being very generous this year, giving everyone who comes to see him a little present, but he&amp;rsquo;s made sure you can&amp;rsquo;t open it until the 25th&amp;hellip;
 Author : Mika nc 163.172.68.42 10006 app.py:
 from os import environ, urandom from Crypto.Cipher import AES from Crypto.Util.Padding import pad from binascii import hexlify SANTA=&amp;#34;&amp;#34;&amp;#34; .-&amp;#34;&amp;#34;-. /,..___\\ () {_____} (/-@-@-\) {`-=^=-&amp;#39;} { `-&amp;#39; } Oh Oh Oh!</description>
@@ -20,10 +20,10 @@ from os import environ, urandom from Crypto.Cipher import AES from Crypto.Util.P
     
     <item>
       <title>Write Up - IrisCTF 2023: babynotrsa | Why you should beware tweaking RSA</title>
-      <link>https://c0w5lip.github.io/posts/2023-01-11-irisctf-2023-babynotrsa/</link>
+      <link>https://c0w5lip.github.io/archives/2023-01-11-irisctf-2023-babynotrsa/</link>
       <pubDate>Wed, 11 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://c0w5lip.github.io/posts/2023-01-11-irisctf-2023-babynotrsa/</guid>
+      <guid>https://c0w5lip.github.io/archives/2023-01-11-irisctf-2023-babynotrsa/</guid>
       <description>Informations Video version (French)
 Sincere acknowledgements to aaSSfxxx who helped me a bit with mathematical demonstrations and kindly read my write up before I posted it.
 This challenge is one of the ones I flagged during the IrisCTF 2023. Thanks to the organizers, I didn&amp;rsquo;t tried lots challenges but that one was particulary fun as a beginner.
