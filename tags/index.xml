@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on c0w5lip@wired:~$</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://c0w5lip.github.io/tags/</link>
     <description>Recent content in Tags on c0w5lip@wired:~$</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 25 Dec 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://c0w5lip.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Crypto</title>
-      <link>http://localhost:1313/tags/crypto/</link>
+      <link>https://c0w5lip.github.io/tags/crypto/</link>
       <pubDate>Thu, 25 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/crypto/</guid>
+      <guid>https://c0w5lip.github.io/tags/crypto/</guid>
       <description></description>
     </item>
     <item>
       <title>Pwn</title>
-      <link>http://localhost:1313/tags/pwn/</link>
+      <link>https://c0w5lip.github.io/tags/pwn/</link>
       <pubDate>Thu, 25 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/pwn/</guid>
+      <guid>https://c0w5lip.github.io/tags/pwn/</guid>
       <description></description>
     </item>
     <item>
       <title>Write-Up</title>
-      <link>http://localhost:1313/tags/write-up/</link>
+      <link>https://c0w5lip.github.io/tags/write-up/</link>
       <pubDate>Thu, 25 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/write-up/</guid>
+      <guid>https://c0w5lip.github.io/tags/write-up/</guid>
       <description></description>
     </item>
     <item>
       <title>Cryptography</title>
-      <link>http://localhost:1313/tags/cryptography/</link>
+      <link>https://c0w5lip.github.io/tags/cryptography/</link>
       <pubDate>Wed, 25 Dec 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/cryptography/</guid>
+      <guid>https://c0w5lip.github.io/tags/cryptography/</guid>
       <description></description>
     </item>
   </channel>
