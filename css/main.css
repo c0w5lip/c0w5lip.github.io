@@ -58,6 +58,11 @@ nav li {
 }
 
 
+li {
+  margin-bottom: 8px; /* Adjust the value as needed */
+}
+
+
 
 pre.text {
   color: #e2dced;

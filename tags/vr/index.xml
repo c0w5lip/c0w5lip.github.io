@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vr on c0w5lip@wired:~$</title>
+    <link>http://localhost:1313/tags/vr/</link>
+    <description>Recent content in Vr on c0w5lip@wired:~$</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 25 Jan 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/vr/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Root-causing N-days with Patch Diffing</title>
+      <link>http://localhost:1313/posts/2026-01-21-patch-diffing-introduction/</link>
+      <pubDate>Sun, 25 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2026-01-21-patch-diffing-introduction/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;This article is meant to be a quick introduction to &amp;ldquo;Patch Diffing&amp;rdquo;, with a practical study case on vulnerability CVE-2023-38831 that affected WinRAR back then.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/2026-01-25-patch-diffing-introduction/rem_ram.gif&#34; alt=&#34;&#34;&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;what-is-patch-diffing&#34;&gt;What is Patch Diffing?&lt;/h3&gt;&#xA;&lt;p&gt;Patch Diffing is simply the process of diffing (comparing to spot differences) two versions of a binary: the one before and after a particular patch was applied.&lt;/p&gt;&#xA;&lt;h3 id=&#34;why-is-it-done&#34;&gt;Why is it done?&lt;/h3&gt;&#xA;&lt;p&gt;(non-exhaustive):&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;1-day exploits: Vendors often patch bugs without giving any detail or even mentioning the existence of a vulnerability. Diffing allows researchers to reconstruct the exploit, which is still valid&lt;/li&gt;&#xA;&lt;li&gt;Patch bypass: Patch applied to vulnerabilities can be flawed. You can therefore try and bypass the patch to exploit the same vulnerability, or even find new vulnerabilities that emerged as a byproduct of the patch.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;how-is-it-done&#34;&gt;How is it done?&lt;/h3&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Export binaries to databases using tools like &lt;a href=&#34;https://github.com/joxeankoret/diaphora&#34;&gt;Diaphora&lt;/a&gt; or &lt;a href=&#34;https://github.com/google/bindiff&#34;&gt;BinDiff&lt;/a&gt;.&lt;/li&gt;&#xA;&lt;li&gt;Diff the databases&lt;/li&gt;&#xA;&lt;li&gt;Filter and go through the results&lt;/li&gt;&#xA;&lt;li&gt;Find interesting changes&lt;/li&gt;&#xA;&lt;li&gt;Potentially find exploitable material from changes&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h3 id=&#34;personal-note&#34;&gt;Personal note&lt;/h3&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve mostly been a Reverse Engineering guy so far, so Binary Diffing is a comfortable skill to exercise, as it mostly consists of RE. I think it&amp;rsquo;s nice to train yourself to spot vulnerabilities without drowning in a big mess of code.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

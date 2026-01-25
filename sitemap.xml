@@ -2,50 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://c0w5lip.github.io/tags/crypto/</loc>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2026-01-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2026-01-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/pwn/</loc>
+    <lastmod>2026-01-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/re/</loc>
+    <lastmod>2026-01-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/2026-01-21-patch-diffing-introduction/</loc>
+    <lastmod>2026-01-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2026-01-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/tutorial/</loc>
+    <lastmod>2026-01-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/vr/</loc>
+    <lastmod>2026-01-25T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/crypto/</loc>
     <lastmod>2025-12-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://c0w5lip.github.io/</loc>
+    <loc>http://localhost:1313/posts/2025-12-25-root-xmas-2025-pwn-wii-nter-hack/</loc>
     <lastmod>2025-12-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://c0w5lip.github.io/posts/</loc>
+    <loc>http://localhost:1313/tags/write-up/</loc>
     <lastmod>2025-12-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://c0w5lip.github.io/tags/pwn/</loc>
-    <lastmod>2025-12-25T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://c0w5lip.github.io/posts/2025-12-25-root-xmas-2025-pwn-wii-nter-hack/</loc>
-    <lastmod>2025-12-25T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://c0w5lip.github.io/tags/</loc>
-    <lastmod>2025-12-25T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://c0w5lip.github.io/tags/write-up/</loc>
-    <lastmod>2025-12-25T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://c0w5lip.github.io/archives/</loc>
+    <loc>http://localhost:1313/archives/</loc>
     <lastmod>2024-12-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://c0w5lip.github.io/tags/cryptography/</loc>
+    <loc>http://localhost:1313/tags/cryptography/</loc>
     <lastmod>2024-12-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://c0w5lip.github.io/archives/2024-12-25-root-xmas/</loc>
+    <loc>http://localhost:1313/archives/2024-12-25-root-xmas/</loc>
     <lastmod>2024-12-25T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://c0w5lip.github.io/archives/2024-02-18-wu-pthd2024/</loc>
+    <loc>http://localhost:1313/archives/2024-02-18-wu-pthd2024/</loc>
     <lastmod>2024-02-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://c0w5lip.github.io/archives/2023-04-29-wu-fcsc-2023/</loc>
+    <loc>http://localhost:1313/archives/2023-04-29-wu-fcsc-2023/</loc>
     <lastmod>2023-04-29T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://c0w5lip.github.io/archives/2023-03-09-wu-after-dark-winter-2023-jester/</loc>
+    <loc>http://localhost:1313/archives/2023-03-09-wu-after-dark-winter-2023-jester/</loc>
     <lastmod>2023-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://c0w5lip.github.io/archives/2023-01-11-irisctf-2023-babynotrsa/</loc>
+    <loc>http://localhost:1313/archives/2023-01-11-irisctf-2023-babynotrsa/</loc>
     <lastmod>2023-01-11T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://c0w5lip.github.io/about/</loc>
+    <loc>http://localhost:1313/about/</loc>
   </url><url>
-    <loc>https://c0w5lip.github.io/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
   </url>
 </urlset>

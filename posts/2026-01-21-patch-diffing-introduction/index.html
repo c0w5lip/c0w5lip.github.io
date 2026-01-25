@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+
+<script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>c0w5lip@wired:~$</title>
+
+    <link rel="stylesheet" href="/css/main.css">
+
+
+      <script src="/js/main.js"></script>
+
+
+</head>
+<body>
+  <header>
+    <h1>c0w5lip@wired:~$</h1>
+
+  <nav>
+    <ul>
+  <span class="menu-bracket">[</span> 
+  <ul style="list-style: none; padding: 0; margin: 0; display: inline-flex; align-items: center;">
+      <li class="menu-item"> 
+        <a href="/">home</a>
+      </li>
+      <li class="menu-item"> 
+        <a aria-current="true" class="ancestor" href="/posts/">posts</a>
+      </li>
+      <li class="menu-item"> 
+        <a href="/tags/">tags</a>
+      </li>
+      <li class="menu-item"> 
+        <a href="/about/">about</a>
+      </li>
+  </ul>
+  <span class="menu-bracket">]</span> 
+    </ul>
+  </nav>
+
+
+  </header>
+  <main>
+    
+      <div class="tags">
+      🏷️
+      
+        <a href="/tags/vr" class="tag">vr</a>
+      
+        <a href="/tags/pwn" class="tag">pwn</a>
+      
+        <a href="/tags/re" class="tag">re</a>
+      
+        <a href="/tags/tutorial" class="tag">tutorial</a>
+      
+      </div>
+    
+    
+    
+  
+    <h1>Root-causing N-days with Patch Diffing</h1>
+  
+
+  
+
+  <h2 id="introduction">Introduction</h2>
+<p>This article is meant to be a quick introduction to &ldquo;Patch Diffing&rdquo;, with a practical study case on vulnerability CVE-2023-38831 that affected WinRAR back then.</p>
+<p><img src="/images/2026-01-25-patch-diffing-introduction/rem_ram.gif" alt=""></p>
+<h3 id="what-is-patch-diffing">What is Patch Diffing?</h3>
+<p>Patch Diffing is simply the process of diffing (comparing to spot differences) two versions of a binary: the one before and after a particular patch was applied.</p>
+<h3 id="why-is-it-done">Why is it done?</h3>
+<p>(non-exhaustive):</p>
+<ol>
+<li>1-day exploits: Vendors often patch bugs without giving any detail or even mentioning the existence of a vulnerability. Diffing allows researchers to reconstruct the exploit, which is still valid</li>
+<li>Patch bypass: Patch applied to vulnerabilities can be flawed. You can therefore try and bypass the patch to exploit the same vulnerability, or even find new vulnerabilities that emerged as a byproduct of the patch.</li>
+</ol>
+<h3 id="how-is-it-done">How is it done?</h3>
+<ol>
+<li>Export binaries to databases using tools like <a href="https://github.com/joxeankoret/diaphora">Diaphora</a> or <a href="https://github.com/google/bindiff">BinDiff</a>.</li>
+<li>Diff the databases</li>
+<li>Filter and go through the results</li>
+<li>Find interesting changes</li>
+<li>Potentially find exploitable material from changes</li>
+</ol>
+<h3 id="personal-note">Personal note</h3>
+<p>I&rsquo;ve mostly been a Reverse Engineering guy so far, so Binary Diffing is a comfortable skill to exercise, as it mostly consists of RE. I think it&rsquo;s nice to train yourself to spot vulnerabilities without drowning in a big mess of code.</p>
+<h2 id="study-case-winrar">Study case: WinRAR</h2>
+<p>We will be working with two successive versions of the famous tool WinRAR.</p>
+<p>For the sake of this article, let&rsquo;s pretend that the latest version is 6.23, following the 6.22 version from a few months ago.</p>
+<h3 id="getting-the-binaries">Getting the binaries</h3>
+<p>If you want to practice patch diffing, you might want to search for curated and malware-free repositories to download old versions of software from. In our case, we will be using <a href="https://www.filepuma.com/download/winrar_64bit_-237/versions/">Filepuma</a>.</p>
+<h3 id="analysis">Analysis</h3>
+<p>Let&rsquo;s first open the <strong>patched</strong> version of <code>WinRAR.exe</code> in IDA Pro 9.2, and export it to an sqlite databse using <a href="https://github.com/joxeankoret/diaphora">Diaphora</a>. If you follow along, make sure to unchecked the option related to microcode generation, as it&rsquo;s not needed and significantly hinders the process.</p>
+<p><img src="/images/2026-01-25-patch-diffing-introduction/patched_version_diaphora.png" alt=""></p>
+<p>Once the process is done, we can open the <strong>unpatched</strong> version of the same binary, and proceed to the export and diffing with the patched binary database.</p>
+<p><img src="/images/2026-01-25-patch-diffing-introduction/unpatched_version_diaphora.png" alt=""></p>
+<p>Eventually, several new views appear, showing information about the diff. We will be focusing on one in particular: <strong>Partial Matches</strong>.</p>
+<p><img src="/images/2026-01-25-patch-diffing-introduction/candidates.png" alt=""></p>
+<p>Because there are quite a few functions, we can narrow our candidates down based on 2 filters: The number of basic blocks added, and the &ldquo;<strong>Ratio</strong>&rdquo; (1). Adding a simple <code>if</code> statement as a patch for a vulnerability will translate to a couple more basic blocks being added to the CFG, so this gives us a rough idea about the number of additional basic blocks.</p>
+<p>(1) &ldquo;Ratio&rdquo; being simply the degree of difference between the two functions ($1.0$ for identical functions), we can for example eliminate ratio that are way too high ($0.99&hellip;$) as these are more likely to be insignificant changes in the assembly rather than a patch.</p>
+<p>Filtering tricks like these are useful not to waste time, but the whole process still is tedious and requires you to use your intuition, common sense, and do a lot of digging.</p>
+<p>After looking at the diffed pseudo code for a few of our functions, one in particular catches our eye (<strong>Line 31</strong>).</p>
+<p><img src="/images/2026-01-25-patch-diffing-introduction/unpatched_vs_patched.png" alt=""></p>
+<p>This code is actually run whenever you&rsquo;re double-clicking on a file that&rsquo;s within an archive that you just opened in the WinRAR GUI.</p>
+<h3 id="the-bug">The bug</h3>
+<p>That code actually leads to <a href="https://nvd.nist.gov/vuln/detail/cve-2023-38831">CVE-2023-38831</a>.</p>
+<p>Without going too much into the details, here&rsquo;s what happens:</p>
+<ul>
+<li>Parameters are set for the instance of the <a href="https://learn.microsoft.com/en-us/windows/win32/api/shellapi/ns-shellapi-shellexecuteinfow">SHELLEXECUTEINFOW</a> struct (<code>pExecInfo</code>)</li>
+<li>WinRAR extracts tries to execute the file that&rsquo;s been clicked (<code>v12 = ShellExecuteExW(&amp;pExecInfo);</code>)</li>
+</ul>
+<p>The problem is that <a href="https://learn.microsoft.com/en-us/windows/win32/api/shellapi/nf-shellapi-shellexecuteexw">ShellExecuteExW()</a> has a particular behaviour where it encounters an ambiguous path.</p>
+<p>One of the field of the struct is <code>lpVerb</code>, which &ldquo;specifies the action to be performed&rdquo;. WinRAR retries execution with <code>lpVerb = 0</code> after a failed call, regardless of the failure cause:</p>
+<div class="highlight"><pre tabindex="0" style="color:#d8dee9;background-color:#2e3440;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c" data-lang="c"><span style="display:flex;"><span>v12 <span style="color:#81a1c1">=</span> <span style="color:#88c0d0">ShellExecuteExW</span><span style="color:#eceff4">(</span><span style="color:#81a1c1">&amp;</span>pExecInfo<span style="color:#eceff4">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#81a1c1;font-weight:bold">if</span> <span style="color:#eceff4">(</span><span style="color:#81a1c1">!</span>v12<span style="color:#eceff4">)</span> <span style="color:#bf616a">#</span> ShellExecuteExW fails
+</span></span><span style="display:flex;"><span><span style="color:#eceff4">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#eceff4">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#81a1c1;font-weight:bold">if</span> <span style="color:#eceff4">(</span>pExecInfo<span style="color:#eceff4">.</span>lpVerb<span style="color:#eceff4">)</span> <span style="color:#bf616a">#</span> lpVerb set<span style="color:#81a1c1">?</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#eceff4">{</span>
+</span></span><span style="display:flex;"><span>        pExecInfo<span style="color:#eceff4">.</span>lpVerb <span style="color:#81a1c1">=</span> <span style="color:#b48ead">0</span><span style="color:#eceff4">;</span> <span style="color:#bf616a">#</span> lpVerb gets nulled
+</span></span><span style="display:flex;"><span>        v12 <span style="color:#81a1c1">=</span> <span style="color:#88c0d0">ShellExecuteExW</span><span style="color:#eceff4">(</span><span style="color:#81a1c1">&amp;</span>pExecInfo<span style="color:#eceff4">);</span> <span style="color:#bf616a">#</span> we try to execute the function again<span style="color:#eceff4">,</span> with a nulled lpVerb 
+</span></span><span style="display:flex;"><span>    <span style="color:#eceff4">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#eceff4">}</span>
+</span></span></code></pre></div><p>With <code>pExecInfo.lpVerb = 0</code>, observed shell behavior shows broader path resolution heuristics being applied.</p>
+<p>If we name a file <code>evil.pdf </code> (with a trailing space) and a folder of the same name containing a script named <code>evil.pdf .cmd</code>, the trailing will stealthily invalidate the PDF extension (Windows can&rsquo;t find an application to open the file). This will result in <code>ShellExecuteExW()</code> failing.</p>
+<p>However, this we just assessed that this fail will cause <code>lpVerb</code> to be nulled, and <code>ShellExecuteExW()</code> to be called again with the new parameter (Even though the fail had nothing to do with <code>lpVerb</code>!). In that case, the following behaviour is observed from the shell: it looks for a folder of the same name (<code>evil.pdf /</code>), and automatically execute any script file present within the said directory (i.e <code>evil.pdf .cmd</code>).</p>
+<h3 id="the-patch">The patch</h3>
+<p>A check has been added (<code>if (GetLastError() != 1155)</code>) to prevent <code>ShellExecuteExW()</code> from being executed again if it returned $1155$ (<strong><a href="https://learn.microsoft.com/en-us/windows/win32/debug/system-error-codes--1000-1299-">ERROR_NO_ASSOCIATION</a></strong>) during the first attempt.</p>
+<p>Therefore, the patch revolves around fixing the logic rather than sanitizing.</p>
+<h3 id="exploit">Exploit?</h3>
+<p>I wrote my own exploit but thought I&rsquo;d redact that part due to legal concerns. All it takes is 4 lines of Python to pop a calc, try it yourself with my explanations.</p>
+<pre tabindex="0"><code>CVE-2023-38831.zip
+├── evil .pdf  (File with trailing space)
+└── evil .pdf  (Folder)
+    └── evil.pdf .cmd (Payload)
+</code></pre><h3 id="note-on-dynamic-analysis-vs-static-theory">Note on dynamic analysis vs static theory</h3>
+<p>We just assessed that the payload is running during the 2nd call to <code>ShellExecuteExW()</code> (retry). However, if you debug WinRAR, you&rsquo;ll notice that the payload is executed during the first call. This reveals that the Windows Shell API is even more &ldquo;aggressive&rdquo; than previously thought: it directly notices an ambiguous path, and searches into our directory before the function even returned an error.</p>
+<h2 id="conclusion">Conclusion</h2>
+<h3 id="opening">Opening</h3>
+<p>My friend <a href="https://nasm.re/">nasm</a> sent me <a href="https://www.akamai.com/blog/security-research/patch-wednesday-root-cause-analysis-with-llms">this article</a> about AI-assisted Patch Diffing, which you will most definitely enjoy if you found mine interesting.</p>
+<h3 id="additional-resources">Additional resources</h3>
+<ul>
+<li><a href="https://diffing.quarkslab.com/exporter/binexport.html">https://diffing.quarkslab.com/exporter/binexport.html</a></li>
+<li><a href="https://www.orangecyberdefense.com/be/blog/introduction-to-binary-diffing-part-3">https://www.orangecyberdefense.com/be/blog/introduction-to-binary-diffing-part-3</a></li>
+</ul>
+<h3 id="disclamer">Disclamer</h3>
+<p>This article is for educational and defensive research only. Do not attempt to reproduce exploit code against systems you do not own or without explicit authorization. Users should update WinRAR to 6.23 or later to mitigate the issue described here.</p>
+
+  
+
+  </main>
+  <footer>
+    
+  </footer>
+</body>
+</html>
